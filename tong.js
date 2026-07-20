@@ -49,4 +49,25 @@ function addTransaction() {
     document.getElementById("date").value = "";
     document.getElementById("content").value = "";
     document.getElementById("amount").value = "";
+
+    
+}
+function toggleMenu() {
+    document.getElementById("ham").classList.toggle("show");
+}
+function searchData(){
+    var input = document.getElementById("search").value.toLowerCase();
+    var table = document.getElementById("transactionTable");
+    var rows = table.getElementsByTagName("tr");
+
+    for(var i = 1; i < rows.length; i++){
+        var text = rows[i].innerText.toLowerCase();
+
+        if(text.includes(input)){
+            rows[i].style.display="";
+        }
+        else{
+            rows[i].style.display="none";
+        }
+    }
 }

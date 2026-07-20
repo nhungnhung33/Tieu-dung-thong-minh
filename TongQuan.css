@@ -5,24 +5,26 @@
 
 }
 
-.body {
-    background: #f4f4f4
+body {
+    background: #f9f6f7
 }
 
-.container {
+.layout{
     display: flex;
     min-height: 100vh;
+     flex-wrap:wrap;
 }
 
 .sidebar {
+   
     width: 260px;
     background: #060038;
-    color: rgb(188, 142, 142);
+    color: rgb(247, 211, 211);
     padding: 25px;
 }
 
 .sidebar h2 {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .sidebar ul {
@@ -40,7 +42,7 @@
 }
 
 .sidebar a:hover {
-    color: lightpink
+    color: rgb(251, 164, 177)
 }
 
 .content {
@@ -60,10 +62,10 @@
 
 .content .card {
     flex: 1;
-    background: rgb(237, 166, 166);
+    background: rgb(255, 170, 213);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 2 2 15px rgba(185, 129, 129, 0.333);
+    box-shadow: 2px 2px 15px rgba(185, 129, 129, 0.333);
 }
 
 .card h3 {
@@ -84,12 +86,12 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: #f7a6d1;
     text-align: justify;
 }
 
 th {
-    background: #f09f9f;
+    background: #ffaad5!important;
     padding: 15px;
 }
 td{
@@ -97,5 +99,54 @@ td{
     border-bottom:1px solid #ddd;
 }
 tr:hover{
-    background:#d79b9b;
+    background:#fca4d7;
+}
+.btn-mycolor{
+    background-color: #f786c8;
+    color: white;
+    border: none;
+}
+
+.btn-mycolor:hover{
+    background-color: #f92c96;
+}
+.menu-btn{
+    width: 50px;
+    height: 40px;
+    background-color: #f3e8ee;
+ 
+    
+}
+.show{
+  
+    display: none;
+}
+.search-box{
+    display:flex;
+    width:400px;
+   
+    
+}
+
+.search-box input{
+    flex:1;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px 0 0 8px;
+    outline:none;
+    
+}
+
+.search-box button{
+    width:50px;
+    background:#f786c8;
+    color:white;
+    border:none;
+    border-radius:0 8px 8px 0;
+    cursor:pointer;
+    
+}
+
+.search-box button:hover{
+    background:#f92c96;
 }

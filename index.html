@@ -3,25 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiêu dùng thông minh</title>
-    <link rel="stylesheet" href="TongQuan.css"">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./TongQuan.css" type="text/css">
     <script src="tong.js"></script>
 </head>
 
-<body>
-    <div class="container">
-        <div class="sidebar">
+<body>       
+       
+
+    <div class="layout">
+
+        <div class="sidebar" id="ham">
+
             <h2>Tiêu dùng thông minh</h2>
 
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
+                <li><a href="#">Báo cáo chi tiêu</a></li>
                 <li><a href="user.html">Người dùng</a></li>
-                <li><a href="#">Báo cáo</a></li>
                 <li><a href="#">Cài đặt</a></li>
             </ul>
         </div>
-
-        <div class="content">
+    <button class="menu-btn" onclick="toggleMenu()"><i class="bi bi-list"></i></button>
+    
+        <div class="content"> 
+            <div class="search-box">
+    <input type="text" id="search" placeholder="Tìm kiếm...">
+    <button onclick="searchData()">
+        <i class="bi bi-search"></i>
+    </button>
+</div>
             <h1>Tổng quan hệ thống</h1>
             <div class="cards">
 
@@ -43,11 +58,11 @@
 
             <h2>Thêm giao dịch</h2>
 
-            <input type="date" id="date">
+            <input type="date" id="date" class="form-control mb-3">
 
-            <input type="text" id="content" placeholder="Nội dung">
+            <input class="form-control mb-3" type="text" id="content" placeholder="Nội dung">
 
-            <select id="category">
+            <select class="form-select mb-3" id="category">
                 <option>Ăn uống</option>
                 <option>Đi lại</option>
                 <option>Mua sắm</option>
@@ -56,16 +71,16 @@
                 <option>Lương</option>
             </select>
 
-            <select id="type">
+            <select class="form-select mb-3" id="type">
                 <option value="Thu">Thu</option>
                 <option value="Chi">Chi</option>
             </select>
 
-            <input type="number" id="amount" placeholder="Số tiền">
+            <input class="form-control mb-3" type="number" id="amount" placeholder="Số tiền">
 
-            <button onclick="addTransaction()">Thêm giao dịch</button>
+            <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
             <h2>Lịch sử giao dịch</h2>
-            <table id="transactionTable">
+            <table class="table table-striped table-hover table-bordered mt-3" id="transactionTable">
 
                 <tr>
                     <th>Ngày</th>
