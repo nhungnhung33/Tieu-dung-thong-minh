@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BAi 3</title>
+    <link rel="stylesheet" href="./TongQuan.css" type="text/css">
+    <script src="tong.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Tiêu dùng thông minh</h2>
+
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="user.html">Người dùng</a></li>
+                <li><a href="#">Báo cáo</a></li>
+                <li><a href="#">Cài đặt</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h1>Tổng quan hệ thống</h1>
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Tổng thu</h3>
+                    <p id="tongThu">0 VND</p>
+                </div>
+
+                <div class="card">
+                    <h3>Tổng chi</h3>
+                    <p id="tongChi">0 VND</p>
+                </div>
+
+                <div class="card">
+                    <h3>Số dư</h3>
+                    <p id="soDu">0 VND</p>
+                </div>
+            </div>
+
+            <h2>Thêm giao dịch</h2>
+
+            <input type="date" id="date">
+
+            <input type="text" id="content" placeholder="Nội dung">
+
+            <select id="category">
+                <option>Ăn uống</option>
+                <option>Đi lại</option>
+                <option>Mua sắm</option>
+                <option>Hóa đơn</option>
+                <option>Giải trí</option>
+                <option>Lương</option>
+            </select>
+
+            <select id="type">
+                <option value="Thu">Thu</option>
+                <option value="Chi">Chi</option>
+            </select>
+
+            <input type="number" id="amount" placeholder="Số tiền">
+
+            <button onclick="addTransaction()">Thêm giao dịch</button>
+            <h2>Lịch sử giao dịch</h2>
+            <table id="transactionTable">
+
+                <tr>
+                    <th>Ngày</th>
+                    <th>Nội dung</th>
+                    <th>Danh mục</th>
+                    <th>Loại</th>
+                    <th>Số tiền</th>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.body {
+    background: #f4f4f4
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #060038;
+    color: rgb(188, 142, 142);
+    padding: 25px;
+}
+
+.sidebar h2 {
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 22px 0px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    color: lightpink
+}
+
+.content {
+    flex: 1;
+    padding: 40px;
+}
+
+.content h1 {
+    margin-bottom: 20px;
+}
+
+.content .cards {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 20px
+}
+
+.content .card {
+    flex: 1;
+    background: rgb(237, 166, 166);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 2 2 15px rgba(185, 129, 129, 0.333);
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 22px;
+    border: #ddd;
+    
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    text-align: justify;
+}
+
+th {
+    background: #f09f9f;
+    padding: 15px;
+}
+td{
+    padding: 15px;
+    border-bottom:1px solid #ddd;
+}
+tr:hover{
+    background:#d79b9b;
+}
