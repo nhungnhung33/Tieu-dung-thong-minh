@@ -12,8 +12,8 @@
     <script src="tong.js"></script>
 </head>
 
-<body>       
-       
+<body>
+
 
     <div class="layout">
 
@@ -28,15 +28,36 @@
                 <li><a href="#">Cài đặt</a></li>
             </ul>
         </div>
-    <button class="menu-btn" onclick="toggleMenu()"><i class="bi bi-list"></i></button>
-    
-        <div class="content"> 
-            <div class="search-box">
-    <input type="text" id="search" placeholder="Tìm kiếm...">
-    <button onclick="searchData()">
-        <i class="bi bi-search"></i>
-    </button>
-</div>
+        <button class="menu-btn" onclick="toggleMenu()"><i class="bi bi-list"></i></button>
+
+        <div class="content">
+            <div class="topbar">
+
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Tìm kiếm...">
+                    <button onclick="searchData()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+                    <div class="user-dropdown" onclick="toggleDropdown()">
+                        <div class="user-button">
+                            <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg"
+                                alt="Avatar" class="avatar">
+                            <span class="user-name">Hi!, User</span>
+                            <span class="arrow">▼</span>
+                        </div>
+
+                        <div class="dropdown-menu" id="myDropdown">
+                            <a href="#">Profile</a>
+                            <a href="#">Setting</a>
+                            <hr>
+                            <a href="#" class="logout-btn"> Log out</a>
+                        </div>
+                    </div>
+                
+            </div>
+
             <h1>Tổng quan hệ thống</h1>
             <div class="cards">
 
