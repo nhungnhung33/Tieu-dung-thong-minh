@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BAi 3</title>
+    <link rel="stylesheet" href="./user.css" type="text/css">
+</head>
+
+<body>
+
+
+    <div class="main-container">
+        <!-- Đường dẫn quay lại trang chính (Đổi index.html thành tên file trang chính của bạn) -->
+        <a href="index.html" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại Tổng quan
+        </a>
+
+
+        <h2 class="page-title">Cài đặt tài khoản</h2>
+
+
+        <div class="account-grid">
+            <div class="card profile-card">
+                <div class="avatar-container">
+                    <!-- Ảnh hiển thị mặc định theo ảnh mẫu của bạn -->
+                    <img src="/images/html.png" alt="Avatar" class="avatar-img" id="avatarPreview">
+                    <label for="avatarUpload" class="upload-btn">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                </div>
+                <h3 class="profile-name" id="profileNameDisplay">Bé Bông</h3>
+                <p class="profile-role">Thành viên Siêu VIP</p>
+            </div>
+
+
+            <!-- Cột phải: Form thông tin cá nhân -->
+            <div class="card">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="fullName">Họ và tên</label>
+                        <input type="text" id="fullName" class="form-control" value="Bông Húi" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email">Địa chỉ Email</label>
+                        <input type="email" id="email" class="form-control" value="bongngoanxinkiu.nguyen@gmail.com"
+                            required>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại</label>
+                            <input type="tel" id="phone" class="form-control" value="099999999">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Đơn vị tiền tệ</label>
+                            <select id="currency" class="form-control">
+                                <option value="VND" selected>đ (Việt Nam Đồng)</option>
+                                <option value="USD">$ (Đô la Mỹ)</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="joinDate">Ngày tham gia hệ thống</label>
+                        <input type="text" id="joinDate" class="form-control" value="22/10/2022" disabled>
+                    </div>
+
+
+                    <div class="actions-bar">
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Thông báo nhỏ khi lưu thành công -->
+    <div class="toast" id="successToast">
+        <i class="fa-solid fa-circle-check"></i> Cập nhật thông tin tài khoản thành công!
+    </div>
+
+
+    <script>
+        document.getElementById('avatarUpload').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('avatarPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+        document.getElementById('profileForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Ngăn trang bị reload
+
+
+            const newName = document.getElementById('fullName').value;
+            document.getElementById('profileNameDisplay').text
+            const toast = document.getElementById('successToast');
+            toast.style.display = 'block';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+
+
+
+        });
+    </script>
+</body>
+
+</html>
