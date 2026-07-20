@@ -67,7 +67,23 @@ body {
     border-radius: 10px;
     box-shadow: 2px 2px 15px rgba(185, 129, 129, 0.333);
 }
+/* Làm gọn các ô nhập liệu */
+.content input, 
+.content select {
+    max-width: 500px; /* Giới hạn độ rộng tối đa */
+    display: block;
+    margin-bottom: 12px;
+}
 
+/* Căn chỉnh lại vị trí nút 3 gạch */
+.toggle-btn {
+    margin: 10px 0 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 4px 8px;
+}
 .card h3 {
     font-size: 24px;
     margin-bottom: 15px;
