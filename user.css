@@ -1,5 +1,5 @@
  :root {
-            --primary-color: #1b7343; /* Màu xanh lá chủ đạo từ logo của bạn */
+            --primary-color: #1b7343; 
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --text-color: #333333;
@@ -47,7 +47,23 @@
         .btn-back:hover {
             opacity: 0.8;
         }
+/* Làm gọn các ô nhập liệu */
+.content input, 
+.content select {
+    max-width: 500px; /* Giới hạn độ rộng tối đa */
+    display: block;
+    margin-bottom: 12px;
+}
 
+/* Căn chỉnh lại vị trí nút 3 gạch */
+.toggle-btn {
+    margin: 10px 0 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 4px 8px;
+}
 
         .page-title {
             font-size: 24px;
