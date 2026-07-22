@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mục Tiêu Tiết Kiệm - Quản Lý Tài Chính</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Nhúng thư viện Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/tiet_kiem.css" type="text/css" />
+    <script src="../javascript/tiet_kiem.js" defer></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-container">
+        <div class="header-left">
+          <a href="./index.html" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Trang chủ
+          </a>
+          <h1 class="page-title">
+            <i class="fa-solid fa-piggy-bank"></i> Mục Tiêu Tiết Kiệm
+          </h1>
+        </div>
+        <div class="user-profile">
+          <i class="fa-solid fa-user-circle"></i>
+        </div>
+      </div>
+    </header>
+
+    <main class="savings-container">
+      <!-- Banner cảnh báo nhắc nhở cuối tháng -->
+      <div id="monthlyAlert" class="alert-banner" style="display: none">
+        <div class="alert-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="alert-content">
+          <h4>Nhắc nhở tiết kiệm cuối tháng!</h4>
+          <p>
+            Bạn chưa nạp tiền vào mục tiêu nào trong tháng này. Hãy tích lũy
+            ngay nhé!
+          </p>
+        </div>
+      </div>
+
+      <!-- Thẻ Thống Kê Tổng Quan -->
+      <section class="savings-summary">
+        <div class="summary-card text-green">
+          <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
+          <div class="card-info">
+            <h4>Tổng tiền đã tích lũy</h4>
+            <p class="summary-amount" id="totalSavedText">0 đ</p>
+          </div>
+        </div>
+
+        <div class="summary-card text-blue">
+          <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div class="card-info">
+            <h4>Tổng mục tiêu cần đạt</h4>
+            <p class="summary-amount" id="totalTargetText">0 đ</p>
+          </div>
+        </div>
+
+        <div class="summary-card text-orange">
+          <div class="card-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div class="card-info">
+            <h4>Cần đóng tháng này</h4>
+            <p class="summary-amount" id="totalMonthlyText">0 đ</p>
+          </div>
+        </div>
+      </section>
+      <!-- Biểu đồ thống kê tiền nạp theo tháng -->
+      <section class="card chart-card" style="margin-bottom: 30px">
+        <h3>
+          <i class="fa-solid fa-chart-column"></i> Thống kê dòng tiền nạp theo
+          tháng
+        </h3>
+        <div
+          class="chart-container"
+          style="position: relative; height: 280px; margin-top: 15px"
+        >
+          <canvas id="savingsChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Bố Cục Lưới: Form + Danh Sách -->
+      <div class="savings-grid">
+        <section class="card form-card">
+          <h3><i class="fa-solid fa-circle-plus"></i> Thêm Mục Tiêu Mới</h3>
+          <form id="goalForm">
+            <div class="form-group">
+              <label for="goalName">Tiết kiệm để làm gì?</label>
+              <input
+                type="text"
+                id="goalName"
+                placeholder="Ví dụ: Mua iPhone, Du lịch Hanoi..."
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="targetAmount">Mục tiêu tiền cần đạt (VNĐ)</label>
+              <input
+                type="number"
+                id="targetAmount"
+                placeholder="10000000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="targetDate">Thời gian dự kiến hoàn thành</label>
+              <input type="date" id="targetDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="frequency">Chu kỳ tích lũy</label>
+              <select id="frequency">
+                <option value="monthly">Hàng tháng</option>
+                <option value="weekly">Hàng tuần</option>
+              </select>
+            </div>
+
+            <div class="calc-result" id="calcResult" style="display: none">
+              <i class="fa-solid fa-lightbulb"></i>
+              <div>
+                <span>Gợi ý đóng góp:</span>
+                <strong id="suggestedAmount">0 đ</strong> /
+                <span id="freqText">tháng</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              <i class="fa-solid fa-plus"></i> Tạo mục tiêu
+            </button>
+          </form>
+        </section>
+
+        <section class="goals-list-container">
+          <h3>
+            <i class="fa-solid fa-list-check"></i> Danh sách mục tiêu của bạn
+          </h3>
+          <div class="goals-grid" id="goalsList"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Quản Lý Tài Chính Cá Nhân. Bảo lưu mọi quyền.</p>
+      </div>
+    </footer>
+  </body>
+</html>
