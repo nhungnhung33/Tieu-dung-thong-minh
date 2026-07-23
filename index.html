@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiêu dùng thông minh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./TongQuan.css" type="text/css">
+    <script src="tong.js"></script>
+</head>
+
+
+<body>
+
+
+    <div class="layout">
+        <div class="sidebar" id="ham">
+            <h2>Tiêu dùng thông minh</h2>
+
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="baocao.html">Báo cáo chi tiêu</a></li>
+                <li><a href="user.html">Người dùng</a></li>
+                <li><a href="#">Cài đặt</a></li>
+            </ul>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <i class="bi bi-list"></i>
+        </button>
+        <div class="content">
+            <header>
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Tìm kiếm...">
+                    <button onclick="searchData()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+                <div class="user-dropdown" onclick="toggleDropdown()">
+                    <div class="user-button">
+                        <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg"
+                            alt="Avatar" class="avatar">
+                        <span class="user-name">Hi!, User</span>
+                        <span class="arrow">▼</span>
+                    </div>
+
+                    <div class="dropdown-menu" id="myDropdown">
+                        <a href="user.html">Profile</a>
+                        <a href="#">Setting</a>
+                        <hr>
+                        <a href="#" class="logout-btn" onclick="logout(event)"> Log out</a>
+                    </div>
+                </div>
+            </header>
+            <h1>Tổng quan hệ thống</h1>
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Tổng thu</h3>
+                    <p id="tongThu">0 VND</p>
+                </div>
+
+                <div class="card">
+                    <h3>Tổng chi</h3>
+                    <p id="tongChi">0 VND</p>
+                </div>
+
+                <div class="card">
+                    <h3>Số dư</h3>
+                    <p id="soDu">0 VND</p>
+                </div>
+            </div>
+
+            <h2>Thêm giao dịch</h2>
+
+            <input type="date" id="date" class="form-control mb-3">
+
+            <input class="form-control mb-3" type="text" id="content" placeholder="Nội dung">
+
+            <select class="form-select mb-3" id="category">
+                <option>Ăn uống</option>
+                <option>Đi lại</option>
+                <option>Mua sắm</option>
+                <option>Hóa đơn</option>
+                <option>Giải trí</option>
+                <option>Lương</option>
+            </select>
+
+            <select class="form-select mb-3" id="type">
+                <option value="Thu">Thu</option>
+                <option value="Chi">Chi</option>
+            </select>
+
+            <input class="form-control mb-3" type="number" id="amount" placeholder="Số tiền">
+
+            <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
+            <button onclick="clearDataAndReload()" class="btn btn-danger">Xóa dữ liệu & Tải lại</button>
+            <h2>Lịch sử giao dịch</h2>
+            <table class="table table-striped table-hover table-bordered mt-3" id="transactionTable">
+
+                <tr>
+                    <th>Ngày</th>
+                    <th>Nội dung</th>
+                    <th>Danh mục</th>
+                    <th>Loại</th>
+                    <th>Số tiền</th>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+    <div class="toast" id="logoutToast">
+        Bạn đã đăng xuất thành công!
+    </div>
+</body>
+
+</html>
