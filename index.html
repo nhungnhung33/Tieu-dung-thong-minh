@@ -22,7 +22,7 @@
 
             <ul>
                 <li><a href="index.html">Dashboard</a></li>
-                <li><a href="#">Báo cáo chi tiêu</a></li>
+                <li><a href="baocao.html">Báo cáo chi tiêu</a></li>
                 <li><a href="user.html">Người dùng</a></li>
                 <li><a href="#">Cài đặt</a></li>
             </ul>
@@ -48,10 +48,10 @@
                     </div>
 
                     <div class="dropdown-menu" id="myDropdown">
-                        <a href="#">Profile</a>
+                        <a href="user.html">Profile</a>
                         <a href="#">Setting</a>
                         <hr>
-                        <a href="#" class="logout-btn"> Log out</a>
+                        <a href="#" class="logout-btn" onclick="logout(event)"> Log out</a>
                     </div>
                 </div>
             </header>
@@ -97,6 +97,7 @@
             <input class="form-control mb-3" type="number" id="amount" placeholder="Số tiền">
 
             <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
+            <button onclick="clearDataAndReload()" class="btn btn-danger">Xóa dữ liệu & Tải lại</button>
             <h2>Lịch sử giao dịch</h2>
             <table class="table table-striped table-hover table-bordered mt-3" id="transactionTable">
 
@@ -111,6 +112,9 @@
 
             </table>
         </div>
+    </div>
+    <div class="toast" id="logoutToast">
+        Bạn đã đăng xuất thành công!
     </div>
 </body>
 

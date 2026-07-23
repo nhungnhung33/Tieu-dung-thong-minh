@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiêu dùng thông minh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="TongQuan.css" type="text/css" />
+    <link rel="stylesheet" href="user.css" type="text/css" />
+
+    
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Đường dẫn quay lại trang chính (Đổi index.html thành tên file trang chính của bạn) -->
+        <a href="index.html" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại Tổng quan
+        </a>
+    </div>
+    
+        <div class="content">
+            <!-- ================= KHỐI BIỂU ĐỒ BÁO CÁO ================= -->
+            <div class="my-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Biểu đồ 1: Tình hình chi tiêu (Chiếm 2 cột) -->
+                    <div class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-semibold text-gray-800 text-lg m-0">
+                                Tình hình chi tiêu
+                            </h3>
+                            <select
+                                class="text-xs bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-gray-600">
+                                <option>12 tháng</option>
+                                <option>6 tháng</option>
+                            </select>
+                        </div>
+                        <div class="h-[280px]">
+                            <canvas id="spendingCanvas"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Biểu đồ 2: Chi tiêu theo danh mục -->
+                    <div
+                        class="lg:col-span-1 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <h3 class="font-semibold text-gray-800 text-lg mb-4 mt-0">
+                            Chi tiêu theo danh mục
+                        </h3>
+
+                        <div class="grid grid-cols-1 gap-4 items-center">
+                            <!-- Vùng vẽ biểu đồ tròn + Số tiền ở tâm -->
+                            <div class="relative h-[180px] flex items-center justify-center">
+                                <canvas id="categoryCanvas"></canvas>
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                    <span id="totalCategoryExpenseText" class="text-base font-bold text-gray-800">0
+                                        đ</span>
+                                    <!-- Bổ sung id="totalCategorySubText" vào đây -->
+                                    <span id="totalCategorySubText" class="text-xs text-gray-400">Tổng giao dịch</span>
+                                </div>
+                            </div>
+
+                            <!-- Chú thích chi tiết danh mục -->
+                            <div id="categoryLegendList" class="space-y-1 text-xs">
+                                <!-- JS sẽ tự động render "Chưa có chi tiêu" hoặc danh sách tại đây -->
+                            </div>
+                        </div>
+
+                        <a href="#"
+                            class="text-xs text-blue-600 font-medium mt-4 text-center block hover:underline no-underline">Xem
+                            chi tiết báo cáo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <script src="spending-chart.js"></script>
+    <script src="category-chart.js"></script>
+    
+    <script src="tong.js"></script>
+    <script src="baocao.js"></script>
+</body>
+
+</html>
