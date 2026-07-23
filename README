@@ -15,33 +15,37 @@ Các chức năng chính của ứng dụng:
 - Bảng tổng quan (Dashboard): Hiển thị nhanh Tổng thu, Tổng chi và Số dư hiện tại.
 - Thêm giao dịch: Cho phép người dùng nhập Ngày, Nội dung, Danh mục (Ăn uống, Đi lại, Mua sắm...), Loại (Thu/Chi) và Số tiền.
 - Lịch sử giao dịch: Bảng thống kê chi tiết các giao dịch đã thực hiện.
-- Mục tiêu tiết kiệm: cho phép tạo mục tiêu tiết kiệm, nap tiền, và
+- Mục tiêu tiết kiệm: cho phép tạo mục tiêu tiết kiệm, nạp tiền, và theo dõi tiến độ tiết kiệm
 - Giao diện đáp ứng (Responsive): Có thanh Sidebar linh hoạt kèm nút ẩn/hiện menu (3 gạch) tiện lợi trên di động.
 
 ---
 
-## 📌 3. WHO (Dự án dành cho ai & Ai thực hiện?)
-* **Đối tượng sử dụng:** Học sinh, sinh viên, người đi làm muốn quản lý chi tiêu cá nhân hằng ngày một cách đơn giản nhất.
-* **Nhóm thực hiện dự án:** 
-  * Nguyễn Thị Hồng Nhung (*Chủ nhóm / Developer*)
-  * Thành viên nhóm (*Developer*)
+3. WHO (Dự án dành cho ai & Ai thực hiện?)
+Đối tượng sử dụng: Học sinh, sinh viên, người đi làm muốn quản lý chi tiêu cá nhân hằng ngày một cách đơn giản nhất.
+* Nhóm thực hiện dự án:
+  * Nguyễn Thị Hồng Nhung (Chủ nhóm / Developer)
+  * Thành viên nhóm 
+    - Nguyễn Trịnh Hoàng Sang
+    - Nguyễn Thị Như Ý
+    - Huỳnh Mỹ Tiên
+    - Phạm Huỳnh Lý
 
 ---
 
-## 📌 4. WHERE (Ứng dụng chạy ở đâu & Xem ở đâu?)
-* **Link lưu trữ Code (GitHub Repository):** [Tieu-dung-thong-minh](https://github.com/nhungnhung33/Tieu-dung-thong-minh)
-* **Link Trang web trải nghiệm trực tiếp (GitHub Pages):** [Trải nghiệm Website tại đây](https://nhungnhung33.github.io/Tieu-dung-thong-minh/)
+4. WHERE (Ứng dụng chạy ở đâu & Xem ở đâu?)
+* Link lưu trữ Code (GitHub Repository): [Tieu-dung-thong-minh](https://github.com/nhungnhung33/Tieu-dung-thong-minh)
+* Link Trang web trải nghiệm trực tiếp (GitHub Pages): [Trải nghiệm Website tại đây](https://nhungnhung33.github.io/Tieu-dung-thong-minh/)
 
 ---
 
-## 📌 5. HOW (Ứng dụng được xây dựng như thế nào?)
+5. HOW (Ứng dụng được xây dựng như thế nào?)
 Dự án được phát triển dựa trên các công nghệ lập trình Web cơ bản và quy trình quản lý dự án nhóm:
 
-* **Công nghệ sử dụng:**
-  * **HTML5:** Dùng để dựng khung và cấu trúc các thành phần giao diện.
-  * **CSS3:** Dùng để định dạng màu sắc, bố cục, hiệu ứng (phối hợp file `trang_chu.css` và `TongQuan.css`).
-  * **JavaScript (Vanilla JS):** Dùng để xử lý logic tính toán Thu - Chi, xử lý sự kiện nút 3 gạch và chèn dữ liệu giao dịch vào bảng (`tong.js`).
-* **Quy trình làm việc nhóm:** Sử dụng Git & GitHub để phân chia công việc, tạo nhánh (branch), gửi Pull Request và Merge code.
+Công nghệ sử dụng:
+ - HTML5:Dùng để dựng khung và cấu trúc các thành phần giao diện.
+ - CSS3: Dùng để định dạng màu sắc, bố cục, hiệu ứng (phối hợp file "trang_chu.css" và "TongQuan.css").
+ - JavaScript (Vanilla JS): Dùng để xử lý logic tính toán Thu - Chi, xử lý sự kiện nút 3 gạch và chèn dữ liệu giao dịch vào bảng ("tong.js").
+ - Quy trình làm việc nhóm: Sử dụng Git & GitHub để phân chia công việc, tạo nhánh (branch), gửi Pull Request và Merge code.
 
 ---
-*Cảm ơn thầy đã xem qua dự án của nhóm em!*
+Cảm ơn thầy đã xem qua dự án của nhóm em!
