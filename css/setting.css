@@ -1,0 +1,111 @@
+/* --- LỚP PHỦ XÁM TOÀN MÀN HÌNH --- */
+.modal-overlay {
+  display: none; /* Mặc định ẨN */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền xám mờ */
+  z-index: 9999; /* Đè lên tất cả */
+  
+  /* Căn giữa bảng */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex; /* Khi có active thì HIỆN */
+}
+
+/* --- BẢNG TO NGOÀI CÙNG --- */
+.modal-box {
+  background: #f4f5f7; /* Nền xám rất nhẹ */
+  width: 90%;
+  max-width: 480px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 { margin: 0; font-size: 20px; color: #111; }
+
+.close-btn { font-size: 24px; cursor: pointer; color: #888; }
+.close-btn:hover { color: #000; }
+
+/* --- CÁC BẢNG CON BÊN TRONG --- */
+.setting-card {
+  background: #ffffff; /* Nền trắng đè lên nền xám */
+  border-radius: 12px;
+  padding: 15px 18px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.setting-card h3 { margin-top: 0; margin-bottom: 12px; font-size: 16px; color: #333; }
+
+/* Form Element */
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.form-group.row-group { flex-direction: row; justify-content: space-between; align-items: center; }
+
+.form-group input[type="text"], .form-group select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Avatar Item */
+.avatar-list { display: flex; gap: 10px; }
+.avatar-item {
+  width: 42px; height: 42px; border-radius: 50%;
+  cursor: pointer; border: 3px solid transparent; transition: 0.2s;
+}
+.avatar-item.selected {
+  border-color: #d81b60; /* Màu hồng nút */
+  transform: scale(1.1);
+}
+
+/* Toggle Switch Dark Mode */
+.switch { position: relative; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top:0; left:0; right:0; bottom:0;
+  background-color: #ccc; transition: .4s; border-radius: 20px;
+}
+.slider:before {
+  position: absolute; content: ""; height: 14px; width: 14px;
+  left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;
+}
+input:checked + .slider { background-color: #d81b60; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Nút bấm */
+.btn-right { text-align: right; }
+.btn-pink {
+  background: #d81b60; color: white; border: none;
+  padding: 6px 16px; border-radius: 6px; cursor: pointer; font-weight: bold;
+}
+
+/* --- DARK MODE (CHO CẢ TRANG WEB) --- */
+body.dark-mode { background-color: rgba(13, 21, 37); color: #fff; }
+body.dark-mode .modal-box { background-color: #1e1e1e; }
+body.dark-mode .setting-card { background-color: #2a2a2a; border-color: #444; }
+body.dark-mode .modal-header h2, body.dark-mode .setting-card h3 { color: #fff; }
+body.dark-mode input, body.dark-mode select { background: rgba(16, 24, 42); color: #fff; border-color: #555; }
+body.dark-mode .content .card{background-color: rgba(28, 31, 58); color: white;box-shadow: none;border-color: rgba(48, 52, 80);}
+body.dark-mode .form-control{background-color:rgba(26, 33, 51);color: white;}
+body.dark-mode input::placeholder {color: white; opacity: 1;  }
+body.dark-mode .form-select{background-color:rgba(26, 33, 51);color: white;}
+body.dark-mode .btn-mycolor{background-color: rgba(99, 78, 236);color: white;}
+body.dark-mode .btn-danger{background-color: rgba(44, 30, 51);color: red;}
+body.dark-mode  th{background-color: rgba(25, 27, 64)!important;color: white;}
+body.dark-mode .search-box button{background-color: rgba(100, 81, 238);}
+body.dark-mode input::placeholder {color: white; opacity: 1;   }
