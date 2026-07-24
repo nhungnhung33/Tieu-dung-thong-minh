@@ -37,7 +37,7 @@ const suggestionsContainer = document.getElementById('suggestions-container');
 function hasValidApiKey() {
     return (
         MEGALLM_API_KEY &&
-        MEGALLM_API_KEY !== 'THAY_API_CUA_BAN' &&
+        MEGALLM_API_KEY !== 'sk-mega-631721608dbcc17465bb6b27a7b7d29a.f3f7c47c102e33ed32c1395a0c1a62169b0bcdcf3df33915294935e0553581ec' &&
         MEGALLM_API_KEY.startsWith('sk-mega-')
     );
 }
