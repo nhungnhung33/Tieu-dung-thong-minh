@@ -7,7 +7,7 @@
             fontCache: 'global'
         }
     };
- const GEMINI_API_KEY = "AQ.Ab8RN6ILH2L2OXU85TLkbDzhPPwk2Cop1M_NBBuDf3qSWFVBoQ"; // Thay bằng Gemini API key thực tế
+ const GEMINI_API_KEY = "AQ.Ab8RN6KUkJQPfES53of4NK_20muZ2ljpSB2NqeuQA0I7QahFHg"; 
     const MODEL_NAME = 'gemini-3-flash-preview';
  
    
