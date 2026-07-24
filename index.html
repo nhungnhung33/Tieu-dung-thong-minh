@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
     <link rel="stylesheet" href="./css/TongQuan.css" type="text/css">
     <link rel="stylesheet" href="./css/setting.css" type="text/css">
     <script src="./javascript/tong.js"></script>
@@ -23,11 +25,18 @@
             <h2>Tiêu dùng thông minh</h2>
 
             <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="./baocao.html">Báo cáo chi tiêu</a></li>
-                <li><a href="./tiet_kiem.html">Mục tiêu tiết kiệm</a></li>
-                <li><a href="./user.html">Người dùng</a></li>
-                <li><a href="#" id="navSettings">Cài đặt</a></li>
+                <li><i class="bi bi-house-door-fill"></i>
+                    <a href="index.html">Dashboard</a>
+                </li>
+
+                <li><i class="bi bi-file-earmark-bar-graph-fill" style="font-size: 20px;"></i>
+                    <a href="./baocao.html">Báo cáo chi tiêu</a></li>
+                <li><i class="bi bi-piggy-bank-fill" style="font-size: 20px;"></i>
+                    <a href="./tiet_kiem.html">Mục tiêu tiết kiệm</a></li>
+                <li><i class="bi bi-person-fill" style="font-size: 20px;"></i>
+                    <a href="./user.html">Người dùng</a></li>
+                <li><i class="bi bi-gear-fill" style="font-size: 20px;"></i>
+                    <a href="#" id="navSettings">Cài đặt</a></li>
             </ul>
         </div>
         <button class="menu-btn" onclick="toggleMenu()">
@@ -58,6 +67,8 @@
                     </div>
                 </div>
             </header>
+            <hr>
+
             <h1>Tổng quan hệ thống</h1>
             <div class="cards">
 
@@ -101,9 +112,10 @@
 
             <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
             <button onclick="clearDataAndReload()" class="btn btn-danger">Xóa dữ liệu & Tải lại</button>
+            
             <h2>Lịch sử giao dịch</h2>
-            <table class="table table-striped table-hover table-bordered mt-3" id="transactionTable">
 
+            <table class="table table-striped table-hover table-bordered mt-3" id="transactionTable">
                 <tr>
                     <th>Ngày</th>
                     <th>Nội dung</th>
@@ -111,8 +123,6 @@
                     <th>Loại</th>
                     <th>Số tiền</th>
                 </tr>
-
-
             </table>
         </div>
     </div>
