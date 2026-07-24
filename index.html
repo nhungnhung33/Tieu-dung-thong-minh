@@ -46,7 +46,7 @@
                     <div class="user-button">
                         <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg"
                             alt="Avatar" class="avatar" id="headerAvatar">
-                        <span class="user-name" id="headerUserName" >Hi!, User</span>
+                        <span class="user-name" id="headerUserName">Hi!, User</span>
                         <span class="arrow">▼</span>
                     </div>
 
@@ -117,63 +117,69 @@
         </div>
     </div>
 
-   
-<div id="settingsModal" class="modal-overlay">
-  
-  <div class="modal-box">
-    
-    <div class="modal-header">
-      <h2>Cài đặt & Tài khoản</h2>
-      <span class="close-btn" id="closeSettingsBtn">&times;</span>
-    </div>
 
-   
-    <div class="setting-card">
-      <h3>Tài khoản</h3>
-      
-      <div class="form-group">
-        <label for="usernameInput">Tên hiển thị</label>
-        <input type="text" id="usernameInput" value="Nguyễn Văn A">
-      </div>
+    <div id="settingsModal" class="modal-overlay">
 
-      <div class="form-group">
-        <label>Chọn Avatar</label>
-        <div class="avatar-list">
-          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg" class="avatar-item" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg">
-          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg" class="avatar-item" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg">
-          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg" class="avatar-item selected" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg">
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <h2>Cài đặt & Tài khoản</h2>
+                <span class="close-btn" id="closeSettingsBtn">&times;</span>
+            </div>
+
+
+            <div class="setting-card">
+                <h3>Tài khoản</h3>
+
+                <div class="form-group">
+                    <label for="usernameInput">Tên hiển thị</label>
+                    <input type="text" id="usernameInput" value="Nguyễn Văn A">
+                </div>
+
+                <div class="form-group">
+                    <label>Chọn Avatar</label>
+                    <div class="avatar-list">
+                        <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg"
+                            class="avatar-item"
+                            data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg">
+                        <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg"
+                            class="avatar-item"
+                            data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg">
+                        <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg"
+                            class="avatar-item selected"
+                            data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg">
+                    </div>
+                </div>
+
+                <div class="btn-right">
+                    <button id="saveAccountBtn" class="btn-pink">Lưu</button>
+                </div>
+            </div>
+
+
+            <div class="setting-card">
+                <h3>Cài đặt hiển thị</h3>
+
+                <div class="form-group row-group">
+                    <span>Chế độ tối</span>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="currencySelect">Đơn vị tiền tệ</label>
+                    <select id="currencySelect">
+                        <option value="VND">VND (đ)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
-      </div>
-
-      <div class="btn-right">
-        <button id="saveAccountBtn" class="btn-pink">Lưu</button>
-      </div>
     </div>
-
-    
-    <div class="setting-card">
-      <h3>Cài đặt hiển thị</h3>
-      
-      <div class="form-group row-group">
-        <span>Chế độ tối</span>
-        <label class="switch">
-          <input type="checkbox" id="darkModeToggle">
-          <span class="slider round"></span>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label for="currencySelect">Đơn vị tiền tệ</label>
-        <select id="currencySelect">
-          <option value="VND">VND (đ)</option>
-          <option value="USD">USD ($)</option>
-          <option value="EUR">EUR (€)</option>
-        </select>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 
