@@ -20,6 +20,7 @@ body {
     background: #060038;
     color: rgb(247, 211, 211);
     padding: 25px;
+    
 }
 
 .sidebar h2 {
@@ -29,6 +30,7 @@ body {
 
 .sidebar ul {
     list-style: none;
+    padding-left: 0px;
 }
 
 .sidebar li {
@@ -45,6 +47,10 @@ body {
     color: rgb(251, 164, 177)
 }
 
+.sidebar ul li :last-child{
+    
+}
+
 .content {
     flex: 1;
     padding: 15px;
@@ -52,6 +58,10 @@ body {
 
 .content h1 {
     margin-bottom: 20px;
+}
+
+.content hr{
+    
 }
 
 .content .cards {
@@ -205,7 +215,8 @@ header {
 .dropdown-menu .logout-btn {
     color: red;
 }
-.toast{
+
+.toast {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -214,6 +225,9 @@ header {
     padding: 15px 25px;
     border-radius: 8px;
     display: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
     z-index: 1000;
 }
+
+
+
