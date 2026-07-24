@@ -137,7 +137,7 @@ function hideLoading() {
 }
 
 async function askMegaLLM(messages) {
-    const response = await fetch(API_URL, {
+    const response = await fetch('https://ai.megallm.io/v1/chat/completions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
