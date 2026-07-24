@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chatbot với gợi ý - Gemini API</title>
+<link rel="stylesheet" href="chat.css" type="text/css">
+<link rel="stylesheet" href="user.css" type="text/css">
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+    <div class="main-container">
+        <a href="index.html" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại Tổng quan
+        </a>
+ 
+<div class="chat-container">
+	<div class="error-message" id="error-message">Lỗi: Không thể kết nối đến Gemini API. Vui lòng kiểm tra API key.</div>
+	<div class="chat-box" id="chat-box"></div>
+	<div class="suggestions" id="suggestions-container"></div>
+	<div class="input-row">
+    	<input type="text" id="user-input" placeholder="Tin nhắn Gemini AI" />
+    	<button onclick="sendMessage()" title="Nhấn để gửi tin nhắn">GỬI</button>
+    	<button onclick="startRecognition()" title="Chat bằng giọng nói">🎙️ Nói</button>
+    	<label for="image-input" class="custom-file-upload" title="Tải ảnh lên">📷 Ảnh</label>
+    	<input type="file" id="image-input" accept="image/*" onchange="handleImageUpload()" style="display: none;" />
+	</div>
+	<div class="preview-message" id="preview-message"></div>
+</div>
+ <script src="chat.js"></script> 
+</body>
+</html>
