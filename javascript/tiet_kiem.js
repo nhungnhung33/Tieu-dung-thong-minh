@@ -1,85 +1,130 @@
-// 1. Mảng lưu trữ tất cả các mục tiêu
+// 1. Mảng lưu trữ tất cả các mục tiêu và giao dịch
 let goals = JSON.parse(localStorage.getItem("savings_goals")) || [];
 let transactions =
   JSON.parse(localStorage.getItem("savings_transactions")) || [];
-//HÀM LƯU DỮ LIỆU NÈ
+
+// HÀM LƯU DỮ LIỆU VÀO LOCALSTORAGE
 function saveDataToStorage() {
   localStorage.setItem("savings_goals", JSON.stringify(goals));
   localStorage.setItem("savings_transactions", JSON.stringify(transactions));
 }
-//===CÁC HÀM RENDER VÀ CẬP NHẬT GIAO DIỆN( tụi nó phải nằm ngoài này!! ko đc quan lun tung nha mi)
-// --- HÀM RENDER DANH SÁCH MỤC TIÊU RA MÀN HÌNH ---
-function renderGoalsList() {
-  const goalsList = document.getElementById("goalsList");
-  goalsList.innerHTML = "";
 
-  if (goals.length === 0) {
-    goalsList.innerHTML = `<p style="color: #888; font-style: italic;">Chưa có mục tiêu nào được tạo.</p>`;
-    return;
+// ==========================================
+// CÁC HÀM XỬ LÝ GIAO DIỆN & DROPDOWN
+// ==========================================
+
+// --- HÀM ẨN/HIỆN DROPDOWN USER ---
+window.toggleDropdown = function () {
+  const dropdown = document.getElementById("myDropdown");
+  if (dropdown) {
+    dropdown.classList.toggle("show");
+  }
+};
+
+// Tự động đóng dropdown nếu người dùng click ra ngoài màn hình
+window.onclick = function (event) {
+  if (!event.target.closest(".user-dropdown")) {
+    const dropdowns = document.getElementsByClassName("dropdown-menu");
+    for (let i = 0; i < dropdowns.length; i++) {
+      const openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("show")) {
+        openDropdown.classList.remove("show");
+      }
+    }
+  }
+};
+
+// --- HÀM RENDER DANH SÁCH MỤC TIÊU (ĐANG THỰC HIỆN & ĐÃ HOÀN THÀNH) ---
+function renderGoalsList() {
+  const activeContainer = document.getElementById("goalsList");
+  const completedContainer = document.getElementById("completedGoalsList");
+
+  if (activeContainer) activeContainer.innerHTML = "";
+  if (completedContainer) completedContainer.innerHTML = "";
+
+  // 1. Lọc danh sách theo status
+  const activeGoals = goals.filter((g) => g.status !== "completed");
+  const completedGoals = goals.filter((g) => g.status === "completed");
+
+  // 2. Render danh sách đang thực hiện
+  if (activeGoals.length === 0 && activeContainer) {
+    activeContainer.innerHTML = `<p style="color: #888; font-style: italic;">Chưa có mục tiêu nào đang thực hiện.</p>`;
+  } else if (activeContainer) {
+    activeGoals.forEach((goal) => {
+      activeContainer.appendChild(createGoalCardHTML(goal, false));
+    });
   }
 
-  goals.forEach((goal) => {
-    const dateParts = goal.targetDate.split("-");
-    const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+  // 3. Render danh sách đã hoàn thành
+  if (completedGoals.length === 0 && completedContainer) {
+    completedContainer.innerHTML = `<p style="color: #888; font-style: italic;">Chưa có mục tiêu nào hoàn thành.</p>`;
+  } else if (completedContainer) {
+    completedGoals.forEach((goal) => {
+      completedContainer.appendChild(createGoalCardHTML(goal, true));
+    });
+  }
 
-    // Tính % tiến độ
-    const percent = Math.min(
-      100,
-      Math.round((goal.currentSaved / goal.targetAmount) * 100),
-    );
-    const freqLabel = goal.frequency === "monthly" ? "tháng" : "tuần";
-
-    const card = document.createElement("div");
-    card.className = "card goal-card";
-    card.style.cssText =
-      "background: #ffe3f5; padding: 16px; border-radius: 12px; border: 1px solid #ffe3f5; margin-bottom: 12px;";
-
-    // Dùng dấu phẩy ngược (backtick `) ở đầu và cuối chuỗi HTML:
-    card.innerHTML = `
-        <div class="goal-header" style="display: flex; justify-content: space-between; align-items: center;">
-          <h4 style="margin: 0; font-weight: bold;">🎯 ${goal.goalName}</h4>
-          <span class="goal-percent" style="font-weight: bold; color: #bb6eff;">${percent}%</span>
-        </div>
-        
-        <div class="goal-amounts" style="display: flex; justify-content: space-between; font-size: 14px; margin: 10px 0;">
-          <span>Đã tích lũy: <strong style="color: #2563eb;">${goal.currentSaved.toLocaleString("vi-VN")} đ</strong></span>
-          <span>Mục tiêu: <strong>${goal.targetAmount.toLocaleString("vi-VN")} đ</strong></span>
-        </div>
-
-        <!-- Thanh tiến độ -->
-        <div class="progress-bar" style="background: #e9e5eb; border-radius: 10px; height: 10px; width: 100%; overflow: hidden;">
-          <div class="progress" style="width: ${percent}%; background: #bb6eff; height: 100%; transition: width 0.3s;"></div>
-        </div>
-
-        <div class="goal-footer" style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; margin-top: 12px; color: #6b7280;">
-          <div>
-            <div>Hạn: <strong>${formattedDate}</strong></div>
-            <div>Đóng: <strong>${goal.monthlyAmount.toLocaleString("vi-VN")} đ/${freqLabel}</strong></div>
-          </div>
-          
-          <button class="btn-deposit" onclick="depositMoney(${goal.id})">
-            <i class="fa-solid fa-plus-circle"></i> Nạp tiền
-          </button>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px;">
-  <span class="goal-percent" style="font-weight: bold; color: #B28DFF;">${percent}%</span>
-  <button onclick="cancelGoal('${goal.goalName}')" style="background: none; border: none; font-size: 16px; cursor: pointer; color: #9ca3af;" title="Xóa mục tiêu">✖</button>
-</div>
-
-      `; // <-- Đóng chuỗi HTML bằng dấu backtick ở đây
-
-    goalsList.appendChild(card);
-  }); // <-- Đóng hàm forEach
+  // Cập nhật lại biểu đồ
   initChart();
-} // <-- Đóng hàm renderGoalsList
+}
+
+// --- HÀM TẠO THẺ CARD CHO MỤC TIÊU ---
+function createGoalCardHTML(goal, isCompleted) {
+  const card = document.createElement("div");
+  card.className = "card goal-card";
+  card.style.cssText =
+    "background: #ffe3f5; padding: 16px; border-radius: 12px; margin-bottom: 12px;";
+
+  const percent = Math.min(
+    100,
+    Math.round((goal.currentSaved / goal.targetAmount) * 100),
+  );
+
+  const actionButtonHTML = isCompleted
+    ? `<button class="btn-renew" onclick="reuseGoal(${goal.id})" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+        <i class="fa-solid fa-rotate-right"></i> Tái sử dụng
+       </button>`
+    : `<button class="btn-deposit" onclick="depositMoney(${goal.id})">
+        <i class="fa-solid fa-plus-circle"></i> Nạp tiền
+       </button>`;
+
+  // Format lại ngày hiển thị DD/MM/YYYY
+  let formattedDate = goal.targetDate;
+  if (goal.targetDate && goal.targetDate.includes("-")) {
+    const parts = goal.targetDate.split("-");
+    formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+
+  card.innerHTML = `
+    <div class="goal-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <h4 style="margin: 0;">🎯 ${goal.goalName} ${isCompleted ? "🏆" : ""}</h4>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-weight: bold; color: #bb6eff;">${percent}%</span>
+        <button onclick="cancelGoal('${goal.goalName}')" style="background: none; border: none; font-size: 16px; cursor: pointer; color: #9ca3af;" title="Xóa mục tiêu">✖</button>
+      </div>
+    </div>
+    <div style="margin: 10px 0; font-size: 14px;">
+      <span>Tích lũy: <strong style="color: #2563eb;">${goal.currentSaved.toLocaleString("vi-VN")} đ</strong> / ${goal.targetAmount.toLocaleString("vi-VN")} đ</span>
+    </div>
+    <div class="progress-bar" style="background: #e9e5eb; border-radius: 10px; height: 10px; width: 100%; overflow: hidden; margin-bottom: 10px;">
+      <div class="progress" style="width: ${percent}%; background: #bb6eff; height: 100%; transition: width 0.3s;"></div>
+    </div>
+    <div class="goal-footer" style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+      <span>Hạn: <strong>${formattedDate}</strong></span>
+      ${actionButtonHTML}
+    </div>
+  `;
+
+  return card;
+}
+
+// --- HÀM HỦY XÓA MỤC TIÊU ---
 window.cancelGoal = function (goalName) {
   alert(
-    `Vì tôi là một người nỏi loạn nên tôi sẽ không cho phép em từ bỏ mục tiêu ${goalName} Hãy tiếp tục cố gắng nhé! 💪🎯`,
+    `Vì tôi là một người nổi loạn nên tôi sẽ không cho phép em từ bỏ mục tiêu ${goalName}. Hãy tiếp tục cố gắng nhé! 💪🎯`,
   );
 };
-document.addEventListener("DOMContentLoaded", function () {
-  // Các xử lý sự kiện form, render UI
-});
+
 // --- HÀM CẬP NHẬT 3 THẺ TỔNG QUAN ---
 function updateSummaryCards() {
   let totalSaved = 0;
@@ -92,28 +137,29 @@ function updateSummaryCards() {
     totalMonthly += g.monthlyAmount;
   });
 
-  document.getElementById("totalSavedText").innerText =
-    totalSaved.toLocaleString("vi-VN") + " đ";
-  document.getElementById("totalTargetText").innerText =
-    totalTarget.toLocaleString("vi-VN") + " đ";
-  document.getElementById("totalMonthlyText").innerText =
-    totalMonthly.toLocaleString("vi-VN") + " đ";
-}
-// Biến lưu trữ đối tượng Chart
-let savingsChart = null;
+  const totalSavedEl = document.getElementById("totalSavedText");
+  const totalTargetEl = document.getElementById("totalTargetText");
+  const totalMonthlyEl = document.getElementById("totalMonthlyText");
 
-// --- HÀM KHỞI TẠO BIỂU ĐỒ ---
+  if (totalSavedEl)
+    totalSavedEl.innerText = totalSaved.toLocaleString("vi-VN") + " đ";
+  if (totalTargetEl)
+    totalTargetEl.innerText = totalTarget.toLocaleString("vi-VN") + " đ";
+  if (totalMonthlyEl)
+    totalMonthlyEl.innerText = totalMonthly.toLocaleString("vi-VN") + " đ";
+}
+
+// --- HÀM KHỜI TẠO BIỂU ĐỒ ---
+let savingsChart = null;
 function initChart() {
   const canvas = document.getElementById("savingsChart");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
-  // Nếu biểu đồ đã tồn tại thì hủy (destroy) để vẽ lại dữ liệu mới
   if (savingsChart) {
     savingsChart.destroy();
   }
 
-  // Lấy dữ liệu từ mảng goals thực tế
   const labels = goals.map((g) => g.goalName);
   const targetData = goals.map((g) => g.targetAmount);
   const savedData = goals.map((g) => g.currentSaved);
@@ -126,13 +172,13 @@ function initChart() {
         {
           label: "Mục tiêu (VNĐ)",
           data: targetData,
-          backgroundColor: "#e5e7eb", // Màu xám nhạt cho mục tiêu
+          backgroundColor: "#e5e7eb",
           borderRadius: 6,
         },
         {
           label: "Thực tế đã nạp (VNĐ)",
           data: savedData,
-          backgroundColor: "#2563eb", // Màu xanh biển cho số tiền đã tích lũy
+          backgroundColor: "#2563eb",
           borderRadius: 6,
         },
       ],
@@ -154,35 +200,39 @@ function checkMonthlyReminder() {
   const currentMonth = today.getMonth() + 1;
   const currentYear = today.getFullYear();
 
-  // Xác định ngày cuối tháng (ví dụ từ ngày 25 trở đi)
   const isEndOfMonth = currentDay >= 25;
+  const alertBox = document.getElementById("monthlyAlert");
+
+  if (!alertBox) return;
 
   if (isEndOfMonth) {
-    // Kiểm tra xem trong tháng này đã có tiền nạp chưa
     const currentMonthKey = `${currentMonth < 10 ? "0" + currentMonth : currentMonth}/${currentYear}`;
-    const hasDepositedThisMonth = depositHistory.some(
+
+    const hasDepositedThisMonth = transactions.some(
       (item) => item.monthYear === currentMonthKey && item.amount > 0,
     );
 
     if (!hasDepositedThisMonth) {
-      const alertBox = document.getElementById("monthlyAlert");
-      if (alertBox) alertBox.style.display = "flex";
+      alertBox.style.display = "flex";
+    } else {
+      alertBox.style.display = "none";
     }
+  } else {
+    alertBox.style.display = "none";
   }
 }
-// --- HÀM NẠP TIỀN / CẬP NHẬT TÍCH LŨY ---
+
+// --- HÀM NẠP TIỀN ---
 window.depositMoney = function (id) {
-  // Tìm mục tiêu theo ID
   const goal = goals.find((g) => g.id === id);
   if (!goal) return;
 
-  // Cho người dùng nhập số tiền muốn nạp thêm
   const amountInput = prompt(
     `Nạp tiền cho mục tiêu "${goal.goalName}":\nNhập số tiền bạn muốn thêm vào (VNĐ):`,
     "100000",
   );
 
-  if (amountInput === null) return; // Người dùng bấm Hủy (Cancel)
+  if (amountInput === null) return;
 
   const addAmount = parseFloat(amountInput);
 
@@ -191,23 +241,64 @@ window.depositMoney = function (id) {
     return;
   }
 
-  // Cộng dồn vào số tiền đã tích lũy
+  // 1. Cộng tiền
   goal.currentSaved += addAmount;
-  saveDataToStorage();
-  // Giới hạn không cho tích lũy vượt quá mục tiêu (nếu muốn)
+
+  // 2. Tự động chuyển sang completed nếu đạt hoặc vượt mục tiêu
   if (goal.currentSaved >= goal.targetAmount) {
-    alert(`🎉 Chúc mừng! Bạn đã hoàn thành mục tiêu "${goal.goalName}"!`);
-  }
-  if (savingsChart) {
-    savingsChart.destroy(); // Xóa biểu đồ cũ
-    initChart(); // Vẽ lại biểu đồ mới với số liệu vừa cộng
+    goal.status = "completed";
+    alert(
+      `🎉 Chúc mừng! Bạn đã hoàn thành xuất sắc mục tiêu "${goal.goalName}"!`,
+    );
   }
 
-  // Cập nhật lại màn hình và các thẻ thống kê
+  // 3. Ghi nhận giao dịch
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const currentMonthKey = `${month < 10 ? "0" + month : month}/${today.getFullYear()}`;
+
+  transactions.push({
+    goalId: id,
+    amount: addAmount,
+    date: today.toISOString(),
+    monthYear: currentMonthKey,
+  });
+
+  // 4. Lưu và cập nhật lại giao diện
+  saveDataToStorage();
   renderGoalsList();
   updateSummaryCards();
-  initChart();
+  checkMonthlyReminder();
 };
+
+// --- HÀM TÁI SỬ DỤNG MỤC TIÊU ---
+window.reuseGoal = function (id) {
+  const goal = goals.find((g) => g.id === id);
+  if (!goal) return;
+
+  const goalNameInput = document.getElementById("goalName");
+  const targetAmountInput = document.getElementById("targetAmount");
+  const targetDateInput = document.getElementById("targetDate");
+
+  if (goalNameInput) goalNameInput.value = goal.goalName;
+  if (targetAmountInput) targetAmountInput.value = goal.targetAmount;
+
+  if (targetDateInput) {
+    targetDateInput.value = "";
+    targetDateInput.focus();
+  }
+
+  const formCard =
+    document.querySelector(".form-card") || document.getElementById("goalForm");
+  if (formCard) {
+    formCard.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+// ==========================================
+// KHỞI TẠO ỨNG DỤNG VÀ SỰ KIỆN FORM
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
   const goalForm = document.getElementById("goalForm");
   const targetAmountInput = document.getElementById("targetAmount");
@@ -222,6 +313,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- HÀM TÍNH TOÁN GỢI Ý ĐÓNG GÓP TỰ ĐỘNG ---
   function calculateContribution() {
+    if (!targetAmountInput || !targetDateInput || !frequencySelect) return;
+
     const target = parseFloat(targetAmountInput.value) || 0;
     const dateVal = targetDateInput.value;
     const freq = frequencySelect.value;
@@ -234,70 +327,117 @@ document.addEventListener("DOMContentLoaded", function () {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
       if (diffDays <= 0) {
-        calcResult.style.display = "none";
+        if (calcResult) calcResult.style.display = "none";
         return;
       }
 
       let periods = 1;
       if (freq === "monthly") {
         periods = Math.max(1, Math.round(diffDays / 30));
-        freqText.innerText = "tháng";
+        if (freqText) freqText.innerText = "tháng";
       } else {
         periods = Math.max(1, Math.round(diffDays / 7));
-        freqText.innerText = "tuần";
+        if (freqText) freqText.innerText = "tuần";
       }
 
       calculatedMonthly = Math.round(target / periods);
-      suggestedAmount.innerText =
-        calculatedMonthly.toLocaleString("vi-VN") + " đ";
-      calcResult.style.display = "block";
+      if (suggestedAmount) {
+        suggestedAmount.innerText =
+          calculatedMonthly.toLocaleString("vi-VN") + " đ";
+      }
+      if (calcResult) calcResult.style.display = "block";
     } else {
-      calcResult.style.display = "none";
+      if (calcResult) calcResult.style.display = "none";
     }
   }
 
-  targetAmountInput.addEventListener("input", calculateContribution);
-  targetDateInput.addEventListener("change", calculateContribution);
-  frequencySelect.addEventListener("change", calculateContribution);
+  if (targetAmountInput)
+    targetAmountInput.addEventListener("input", calculateContribution);
+  if (targetDateInput)
+    targetDateInput.addEventListener("change", calculateContribution);
+  if (frequencySelect)
+    frequencySelect.addEventListener("change", calculateContribution);
 
   // --- LẮNG NGHE SỰ KIỆN TẠO MỤC TIÊU ---
-  goalForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (goalForm) {
+    goalForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const name = document.getElementById("goalName").value;
-    const target = parseFloat(targetAmountInput.value) || 0;
-    const targetDate = targetDateInput.value;
-    const freq = frequencySelect.value;
+      const name = document.getElementById("goalName").value;
+      const target = parseFloat(targetAmountInput.value) || 0;
+      const targetDate = targetDateInput.value;
+      const freq = frequencySelect.value;
 
-    if (!name || target <= 0 || !targetDate) {
-      alert("Vui lòng nhập đầy đủ thông tin!");
+      if (!name || target <= 0 || !targetDate) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+
+      const newGoal = {
+        id: Date.now(),
+        goalName: name,
+        targetAmount: target,
+        currentSaved: 0,
+        targetDate: targetDate,
+        frequency: freq,
+        monthlyAmount: calculatedMonthly || target,
+        status: "active",
+      };
+
+      goals.push(newGoal);
+      saveDataToStorage();
+      renderGoalsList();
+      updateSummaryCards();
+
+      goalForm.reset();
+      if (calcResult) calcResult.style.display = "none";
+      calculatedMonthly = 0;
+    });
+  }
+  // --- HÀM RENDER LỊCH SỬ GIAO DỊCH ---
+  function renderTransactionHistory() {
+    const historyContainer = document.getElementById("transactionHistoryList");
+    if (!historyContainer) return;
+
+    historyContainer.innerHTML = "";
+
+    if (transactions.length === 0) {
+      historyContainer.innerHTML = `
+      <tr>
+        <td colspan="3" style="text-align: center; padding: 15px; color: #888; font-style: italic;">
+          Chưa có giao dịch nạp tiền nào.
+        </td>
+      </tr>`;
       return;
     }
 
-    const newGoal = {
-      id: Date.now(),
-      goalName: name,
-      targetAmount: target,
-      currentSaved: 0, // Mới tạo chưa nạp tiền
-      targetDate: targetDate,
-      frequency: freq,
-      monthlyAmount: calculatedMonthly || target,
-    };
+    // Sắp xếp giao dịch mới nhất lên đầu
+    const sortedTransactions = [...transactions].reverse();
 
-    goals.push(newGoal);
-    saveDataToStorage();
-    renderGoalsList();
-    updateSummaryCards();
+    sortedTransactions.forEach((item) => {
+      // Tìm tên mục tiêu tương ứng dựa vào goalId
+      const parentGoal = goals.find((g) => g.id === item.goalId);
+      const goalName = parentGoal ? parentGoal.goalName : "Mục tiêu đã xóa";
 
-    goalForm.reset();
-    calcResult.style.display = "none";
-    calculatedMonthly = 0;
-  });
-});
-// Gọi các hàm khởi tạo khi trang tải xong
-document.addEventListener("DOMContentLoaded", function () {
+      // Format ngày giờ
+      const dateObj = new Date(item.date);
+      const formattedDateTime = dateObj.toLocaleString("vi-VN");
+
+      const row = document.createElement("tr");
+      row.style.borderBottom = "1px solid #f3f4f6";
+      row.innerHTML = `
+      <td style="padding: 10px; font-weight: 500;">🎯 ${goalName}</td>
+      <td style="padding: 10px; color: #10b981; font-weight: bold;">+${item.amount.toLocaleString("vi-VN")} đ</td>
+      <td style="padding: 10px; color: #6b7280;">${formattedDateTime}</td>
+    `;
+      historyContainer.appendChild(row);
+    });
+  }
+
+  // Khởi tạo trạng thái ban đầu khi load trang
+  saveDataToStorage();
   renderGoalsList();
   updateSummaryCards();
-  initChart();
   checkMonthlyReminder();
+  renderTransactionHistory();
 });
