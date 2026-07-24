@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/TongQuan.css" type="text/css">
-    
+    <link rel="stylesheet" href="./css/setting.css" type="text/css">
+    <script src="./javascript/tong.js"></script>
+    <script src="./javascript/setting.js"></script>
 </head>
 
 
@@ -24,9 +26,8 @@
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="./baocao.html">Báo cáo chi tiêu</a></li>
                 <li><a href="./tiet_kiem.html">Mục tiêu tiết kiệm</a></li>
-                <li><a href="./chat.html">Hỗ trợ người dùng</a></li>
                 <li><a href="./user.html">Người dùng</a></li>
-                <li><a href="#">Cài đặt</a></li>
+                <li><a href="#" id="navSettings">Cài đặt</a></li>
             </ul>
         </div>
         <button class="menu-btn" onclick="toggleMenu()">
@@ -44,8 +45,8 @@
                 <div class="user-dropdown" onclick="toggleDropdown()">
                     <div class="user-button">
                         <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg"
-                            alt="Avatar" class="avatar">
-                        <span class="user-name">Hi!, User</span>
+                            alt="Avatar" class="avatar" id="headerAvatar">
+                        <span class="user-name" id="headerUserName" >Hi!, User</span>
                         <span class="arrow">▼</span>
                     </div>
 
@@ -115,10 +116,72 @@
             </table>
         </div>
     </div>
+
+    <!-- BẢNG CÀI ĐẶT TỔNG (MODAL OVERLAY) -->
+<div id="settingsModal" class="modal-overlay">
+  <!-- BẢNG TO TRẮNG/XÁM NỔI Ở GIỮA -->
+  <div class="modal-box">
+    
+    <div class="modal-header">
+      <h2>Cài đặt & Tài khoản</h2>
+      <span class="close-btn" id="closeSettingsBtn">&times;</span>
+    </div>
+
+    <!-- BẢNG CON 1: TÀI KHOẢN -->
+    <div class="setting-card">
+      <h3>Tài khoản</h3>
+      
+      <div class="form-group">
+        <label for="usernameInput">Tên hiển thị</label>
+        <input type="text" id="usernameInput" value="Nguyễn Văn A">
+      </div>
+
+      <div class="form-group">
+        <label>Chọn Avatar</label>
+        <div class="avatar-list">
+          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg" class="avatar-item" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-12.jpg">
+          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg" class="avatar-item" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-4.jpg">
+          <img src="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg" class="avatar-item selected" data-avatar="https://thuvienavatar.edu.vn/wp-content/uploads/2025/11/avatar-meme-cute-38.jpg">
+        </div>
+      </div>
+
+      <div class="btn-right">
+        <button id="saveAccountBtn" class="btn-pink">Lưu</button>
+      </div>
+    </div>
+
+    <!-- BẢNG CON 2: HIỂN THỊ -->
+    <div class="setting-card">
+      <h3>Cài đặt hiển thị</h3>
+      
+      <div class="form-group row-group">
+        <span>Chế độ tối</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="currencySelect">Đơn vị tiền tệ</label>
+        <select id="currencySelect">
+          <option value="VND">VND (đ)</option>
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
     <div class="toast" id="logoutToast">
         Bạn đã đăng xuất thành công!
     </div>
-    <script src="./javascript/tong.js"></script>
+
 </body>
 
 </html>
