@@ -320,5 +320,82 @@ function startRecognition() {
 
     recognition.onresult = function (event) {
         const voiceInput = event.results[0][0].transcript;
+            userInput.value = voiceInput;
+        previewMessage.innerText = `Bạn vừa nói: "${voiceInput}"`;
+        previewMessage.style.display = 'block';
+
+        const listeningMsg = document.getElementById('listening-message');
+        if (listeningMsg) listeningMsg.remove();
+    };
+
+    recognition.onerror = function (event) {
+        const listeningMsg = document.getElementById('listening-message');
+        if (listeningMsg) listeningMsg.remove();
+
+        alert(`Lỗi nhận dạng giọng nói: ${event.error}`);
+    };
+
+    recognition.onend = function () {
+        const listeningMsg = document.getElementById('listening-message');
+        if (listeningMsg) listeningMsg.remove();
+    };
+
+    recognition.start();
+}
+
+async function handleImageUpload() {
+    const file = imageInput.files[0];
+
+    if (!file) return;
+
+    if (!hasValidApiKey()) {
+        showApiKeyError();
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (event) {
+        const base64Image = event.target.result;
+
+        appendMessage(
+            'user',
+            'Bạn đã tải lên một hình ảnh, đợi tôi một chút...',
+            base64Image
+        );
+
+        showLoading();
+
+        try {
+            const description = await askMegaLLM([
+                {
+                    role: 'user',
+                    content: [
+                        {
+                            type: 'text',
+                            text: 'Hãy phân tích và mô tả nội dung của hình ảnh này một cách chi tiết.'
+                        },
+                        {
+                            type: 'image_url',
+                            image_url: {
+                                url: base64Image,
+                                detail: 'high'
+                            }
+                        }
+                    ]
+                }
+            ]);
+
+            appendMessage('gemini', description);
+        } catch (error) {
+            appendMessage('gemini', `Lỗi phân tích ảnh: ${error.message}`);
+        } finally {
+            hideLoading();
+            imageInput.value = '';
+        }
+    };
+
+    reader.readAsDataURL(file);
+}
 
      
