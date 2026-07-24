@@ -7,7 +7,7 @@ window.MathJax = {
     }
 };
 
-const MEGALLM_API_KEY = 'sk-mega-631721608dbcc17465bb6b27a7b7d29a.f3f7c47c102e33ed32c1395a0c1a62169b0bcdcf3df33915294935e0553581ec';
+const MEGALLM_API_KEY = 'sk-mega-631721608dbcc17465bb6b27a7b7d29a.a6a36a45e76c3a5697e6777af76dc7a45a7b0875c5279dfc0a2a1ee916ffd742';
 const MODEL_NAME = 'gemini-2.5-pro';
 const API_URL = 'https://ai.megallm.io/v1/chat/completions';
 
@@ -35,11 +35,9 @@ const imageInput = document.getElementById('image-input');
 const suggestionsContainer = document.getElementById('suggestions-container');
 
 function hasValidApiKey() {
-    return (
-        MEGALLM_API_KEY &&
-        MEGALLM_API_KEY !== 'sk-mega-631721608dbcc17465bb6b27a7b7d29a.f3f7c47c102e33ed32c1395a0c1a62169b0bcdcf3df33915294935e0553581ec' &&
-        MEGALLM_API_KEY.startsWith('sk-mega-')
-    );
+    const key = MEGALLM_API_KEY.trim();
+
+    return key.startsWith('sk-mega-') && key.length > 20;
 }
 
 function showApiKeyError() {
@@ -137,7 +135,7 @@ function hideLoading() {
 }
 
 async function askMegaLLM(messages) {
-    const response = await fetch('https://ai.megallm.io/v1/chat/completions', {
+    const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
