@@ -1,25 +1,23 @@
-// category-chart.js
+
 let categoryChartInstance = null;
 
-// Khai báo bảng màu cho cả danh mục Thu và Chi
+
 const CATEGORY_COLORS = {
-  // Danh mục Chi
+  
   'Ăn uống': '#F87171',
   'Đi lại': '#FBBF24',
   'Mua sắm': '#818CF8',
   'Hóa đơn': '#38BDF8',
   'Giải trí': '#F43F5E',
-  // Danh mục Thu
+  
   'Lương': '#10B981',
   'Thưởng': '#34D399',
   'Thu nhập khác': '#059669',
-  // Mặc định
+ 
   'Khác': '#9CA3AF'
 };
 
-/**
- * Khởi tạo biểu đồ tròn phân bổ danh mục (Thu & Chi)
- */
+
 function initCategoryChart(canvasId, transactions = []) {
   const canvasEl = document.getElementById(canvasId);
   if (!canvasEl) return;
@@ -66,9 +64,7 @@ function initCategoryChart(canvasId, transactions = []) {
   renderCategoryLegendUI(categoryData);
 }
 
-/**
- * Lọc và tính tổng tiền theo danh mục cho CẢ THU VÀ CHI
- */
+
 function processCategoryData(transactions) {
   const categoriesMap = {};
   let totalAmount = 0;
@@ -87,7 +83,7 @@ function processCategoryData(transactions) {
     }
   });
 
-  // Tự động xác định nhãn hiển thị ở tâm biểu đồ
+  
   let subText = 'Tổng giao dịch';
   if (hasIncome && !hasExpense) {
     subText = 'Tổng thu nhập';
@@ -108,11 +104,9 @@ function processCategoryData(transactions) {
   return { labels, amounts, colors, totalAmount, breakdown, subText };
 }
 
-/**
- * Cập nhật giao diện con số và danh sách danh mục bên dưới
- */
+
 function renderCategoryLegendUI(categoryData) {
-  // 1. Cập nhật số tiền và nhãn ở tâm vòng tròn
+ 
   const totalTextEl = document.getElementById('totalCategoryExpenseText');
   const subTextEl = document.getElementById('totalCategorySubText');
 
@@ -123,7 +117,7 @@ function renderCategoryLegendUI(categoryData) {
     subTextEl.innerText = categoryData.subText;
   }
 
-  // 2. Cập nhật danh sách các danh mục phát sinh
+ 
   const legendListEl = document.getElementById('categoryLegendList');
   if (legendListEl) {
     if (categoryData.totalAmount === 0 || categoryData.breakdown.length === 0) {
@@ -142,9 +136,7 @@ function renderCategoryLegendUI(categoryData) {
   }
 }
 
-/**
- * Cập nhật biểu đồ khi thêm/xóa/sửa giao dịch
- */
+
 function updateCategoryChart(transactions) {
   if (!categoryChartInstance) return;
 
