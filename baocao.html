@@ -18,17 +18,17 @@
 
 <body>
     <div class="main-container">
-        <!-- Đường dẫn quay lại trang chính (Đổi index.html thành tên file trang chính của bạn) -->
+        
         <a href="index.html" class="btn-back">
             <i class="fa-solid fa-arrow-left"></i> Quay lại Tổng quan
         </a>
     </div>
     
         <div class="content">
-            <!-- ================= KHỐI BIỂU ĐỒ BÁO CÁO ================= -->
+            
             <div class="my-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Biểu đồ 1: Tình hình chi tiêu (Chiếm 2 cột) -->
+                    
                     <div class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="font-semibold text-gray-800 text-lg m-0">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
 
-                    <!-- Biểu đồ 2: Chi tiêu theo danh mục -->
+                   
                     <div
                         class="lg:col-span-1 bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                         <h3 class="font-semibold text-gray-800 text-lg mb-4 mt-0">
@@ -53,21 +53,21 @@
                         </h3>
 
                         <div class="grid grid-cols-1 gap-4 items-center">
-                            <!-- Vùng vẽ biểu đồ tròn + Số tiền ở tâm -->
+                           
                             <div class="relative h-[180px] flex items-center justify-center">
                                 <canvas id="categoryCanvas"></canvas>
                                 <div
                                     class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                                     <span id="totalCategoryExpenseText" class="text-base font-bold text-gray-800">0
                                         đ</span>
-                                    <!-- Bổ sung id="totalCategorySubText" vào đây -->
+                                   
                                     <span id="totalCategorySubText" class="text-xs text-gray-400">Tổng giao dịch</span>
                                 </div>
                             </div>
 
-                            <!-- Chú thích chi tiết danh mục -->
+                           
                             <div id="categoryLegendList" class="space-y-1 text-xs">
-                                <!-- JS sẽ tự động render "Chưa có chi tiêu" hoặc danh sách tại đây -->
+                                
                             </div>
                         </div>
 
