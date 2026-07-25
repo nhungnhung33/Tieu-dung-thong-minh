@@ -23,6 +23,14 @@ body {
     
 }
 
+.sidebar ul li img{
+    width: 18px; 
+    height: auto; 
+    vertical-align: middle; 
+    margin-right: 8px;
+    filter: invert(70%) sepia(50%) saturate(1500%) hue-rotate(300deg);
+}
+
 .sidebar h2 {
     margin-bottom: 0px;
     font-size: 30px;
@@ -89,6 +97,22 @@ body {
 }
 
 .content h2 {
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
     margin-bottom: 20px;
 }
 
