@@ -1,26 +1,26 @@
-/* --- LỚP PHỦ XÁM TOÀN MÀN HÌNH --- */
+
 .modal-overlay {
-  display: none; /* Mặc định ẨN */
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Nền xám mờ */
-  z-index: 9999; /* Đè lên tất cả */
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 9999; 
   
-  /* Căn giữa bảng */
+
   justify-content: center;
   align-items: center;
 }
 
 .modal-overlay.active {
-  display: flex; /* Khi có active thì HIỆN */
+  display: flex; 
 }
 
-/* --- BẢNG TO NGOÀI CÙNG --- */
+
 .modal-box {
-  background: #f4f5f7; /* Nền xám rất nhẹ */
+  background: #f4f5f7; 
   width: 90%;
   max-width: 480px;
   border-radius: 16px;
@@ -40,9 +40,9 @@
 .close-btn { font-size: 24px; cursor: pointer; color: #888; }
 .close-btn:hover { color: #000; }
 
-/* --- CÁC BẢNG CON BÊN TRONG --- */
+
 .setting-card {
-  background: #ffffff; /* Nền trắng đè lên nền xám */
+  background: #ffffff; 
   border-radius: 12px;
   padding: 15px 18px;
   margin-bottom: 15px;
@@ -51,7 +51,7 @@
 
 .setting-card h3 { margin-top: 0; margin-bottom: 12px; font-size: 16px; color: #333; }
 
-/* Form Element */
+
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .form-group.row-group { flex-direction: row; justify-content: space-between; align-items: center; }
 
@@ -62,18 +62,18 @@
   outline: none;
 }
 
-/* Avatar Item */
+
 .avatar-list { display: flex; gap: 10px; }
 .avatar-item {
   width: 42px; height: 42px; border-radius: 50%;
   cursor: pointer; border: 3px solid transparent; transition: 0.2s;
 }
 .avatar-item.selected {
-  border-color: #d81b60; /* Màu hồng nút */
+  border-color: #d81b60; 
   transform: scale(1.1);
 }
 
-/* Toggle Switch Dark Mode */
+
 .switch { position: relative; width: 40px; height: 20px; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider {
@@ -87,14 +87,14 @@
 input:checked + .slider { background-color: #d81b60; }
 input:checked + .slider:before { transform: translateX(20px); }
 
-/* Nút bấm */
+
 .btn-right { text-align: right; }
 .btn-pink {
   background: #d81b60; color: white; border: none;
   padding: 6px 16px; border-radius: 6px; cursor: pointer; font-weight: bold;
 }
 
-/* --- DARK MODE (CHO CẢ TRANG WEB) --- */
+
 body.dark-mode { background-color: rgba(13, 21, 37); color: #fff; }
 body.dark-mode .modal-box { background-color: #1e1e1e; }
 body.dark-mode .setting-card { background-color: #2a2a2a; border-color: #444; }
@@ -114,15 +114,15 @@ body.dark-mode .form-container{background-color: rgba(28, 31, 58); }
 .dark-mode select:focus,
 .dark-mode .form-control:focus,
 .dark-mode .form-select:focus {
-    background-color: #121824 !important; /* Vẫn giữ đúng màu nền đó */
+    background-color: #121824 !important; 
     color: #ffffff !important;
-    border-color: #4f46e5 !important;     /* Chỉ đổi viền sang màu xanh tím nhè nhẹ */
+    border-color: #4f46e5 !important;    
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
     outline: none !important;
 }
 .dark-mode input,
 .dark-mode input.form-control,
 .dark-mode select.form-select {
-    border: 1px solid #2b3548 !important; /* Đổi viền trắng/xám sáng thành viền xám tối */
-    box-shadow: none !important;          /* Xóa sạch bóng mờ nếu có */
+    border: 1px solid #2b3548 !important;
+    box-shadow: none !important;         
 }
