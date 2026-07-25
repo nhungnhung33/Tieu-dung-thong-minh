@@ -145,7 +145,7 @@ body {
   font-weight: 700;
 }
 
-/* --- BỐ CỤC LƯỚI SAVINGS GRID --- */
+
 .savings-grid {
   display: grid;
   grid-template-columns: 360px 1fr;
@@ -159,7 +159,7 @@ body {
   }
 }
 
-/* --- FORM CARD --- */
+
 .card {
   background: #f5f1f3;
   padding: 24px;
@@ -250,7 +250,7 @@ body {
   background-color: #1d4ed8;
 }
 
-/* --- DANH SÁCH MỤC TIÊU --- */
+
 .goals-list-container h3 {
   font-size: 18px;
   margin-bottom: 20px;
@@ -357,7 +357,7 @@ body {
   background-color: #2563eb;
 }
 
-/* --- FOOTER --- */
+
 .main-footer {
   background-color: #ffe3f5;
   border-top: 1px solid #959596;
@@ -373,11 +373,11 @@ body {
   color: #9ca3af;
   font-size: 13px;
 }
-/* --- BANNER CẢNH BÁO CUỐI THÁNG --- */
+
 .alert-banner {
   background-color: #fff7ed;
   border: 1px solid #ffedd5;
-  border-left: 5px solid #f99e16; /* Viền màu cam nổi bật */
+  border-left: 5px solid #f99e16; 
   padding: 16px;
   border-radius: 12px;
   margin-bottom: 24px;
