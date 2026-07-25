@@ -7,15 +7,14 @@
             fontCache: 'global'
         }
     };
- const GEMINI_API_KEY = "AQ.Ab8RN6LK7UcFx3tiSHGarndyMw5Qh66DhTqwnZUvXQf0mRcWsQ"; // Thay bằng Gemini API key thực tế
+ const GEMINI_API_KEY = "AQ.Ab8RN6ILH2L2OXU85TLkbDzhPPwk2Cop1M_NBBuDf3qSWFVBoQ"; // Thay bằng Gemini API key thực tế
     const MODEL_NAME = 'gemini-3-flash-preview';
  
    
     const localData = [
         { "prompt": "tiết kiệm để làm gì", "completion": "để cho những mục đích tương lai" },
         { "prompt": "học lớp nào", "completion": "DH25CS03." },
-        { "prompt": "giới thiệu", "completion": "Được tạo bởi 4 con thỏ 1 con chồn." }
-        { "prompt": "Thầy Bảy có tốt không?", "completion": "Là một giảng viên siêu tốt bụng tại trường Đại học Mở TPHCM" }
+        { "prompt": "giới thiệu", "completion": "cDH25CS03ược tạo bởi 4 con thỏ 1 con chồn." }
     ];
  
     const allSuggestions = [
