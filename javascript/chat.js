@@ -14,7 +14,8 @@
     const localData = [
         { "prompt": "tiết kiệm để làm gì", "completion": "để cho những mục đích tương lai" },
         { "prompt": "học lớp nào", "completion": "DH25CS03." },
-        { "prompt": "giới thiệu", "completion": "cDH25CS03ược tạo bởi 4 con thỏ 1 con chồn." }
+        { "prompt": "giới thiệu", "completion": "Được tạo bởi 4 con thỏ 1 con chồn." }
+        { "prompt": "Thầy Bảy có tốt không?", "completion": "Là một giảng viên siêu tốt bụng tại trường Đại học Mở TPHCM" }
     ];
  
     const allSuggestions = [
