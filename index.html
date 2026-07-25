@@ -1,3 +1,4 @@
+index.html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,49 +92,28 @@
 
             <h2>Thêm giao dịch</h2>
 
-            <div class="form-container">
-                <div class="form-grid">
-                    <div class="form-group-input"></div>
-                        <input type="date" id="date" class="form-control mb-3">
-                    </div>
+            <input type="date" id="date" class="form-control mb-3">
 
-                    <div class="form-group">
-                        <input class="form-control mb-3" type="text" id="content" placeholder="Nội dung">
-                    </div>
+            <input class="form-control mb-3" type="text" id="content" placeholder="Nội dung">
 
-                    <div class="form-group">
-                        <select class="form-select mb-3" id="category">
-                            <option>Ăn uống</option>
-                            <option>Đi lại</option>
-                            <option>Mua sắm</option>
-                            <option>Hóa đơn</option>
-                            <option>Giải trí</option>
-                            <option>Lương</option>
-                        </select>
-                    </div>
+            <select class="form-select mb-3" id="category">
+                <option>Ăn uống</option>
+                <option>Đi lại</option>
+                <option>Mua sắm</option>
+                <option>Hóa đơn</option>
+                <option>Giải trí</option>
+                <option>Lương</option>
+            </select>
 
-                    <div class="form-group">
-                        <select class="form-select mb-3" id="type">
-                            <option value="Thu">Thu</option>
-                            <option value="Chi">Chi</option>
-                        </select>
-                    </div>
+            <select class="form-select mb-3" id="type">
+                <option value="Thu">Thu</option>
+                <option value="Chi">Chi</option>
+            </select>
 
-                    <div class="form-group">
-                        <input class="form-control mb-3" type="number" id="amount" placeholder="Số tiền">
-                    </div>
+            <input class="form-control mb-3" type="number" id="amount" placeholder="Số tiền">
 
-                </div>
-
-                <div class="form-action">
-                    <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
-                    <button onclick="clearDataAndReload()" class="btn btn-danger">Xóa dữ liệu & Tải lại</button>
-                </div>
-
-            </div>
-           
-            
-           
+            <button onclick="addTransaction()" class="btn btn-mycolor">Thêm giao dịch</button>
+            <button onclick="clearDataAndReload()" class="btn btn-danger">Xóa dữ liệu & Tải lại</button>
             
             <h2>Lịch sử giao dịch</h2>
 
