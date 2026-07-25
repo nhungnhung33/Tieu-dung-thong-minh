@@ -127,6 +127,6 @@ function logout(event) {
     toast.style.display = "block";
 
     setTimeout(() => {
-        toast.style.display = "none";
+          window.location.href = "aboutus.html";
     }, 2000);
 }
