@@ -101,11 +101,28 @@ body.dark-mode .setting-card { background-color: #2a2a2a; border-color: #444; }
 body.dark-mode .modal-header h2, body.dark-mode .setting-card h3 { color: #fff; }
 body.dark-mode input, body.dark-mode select { background: rgba(16, 24, 42); color: #fff; border-color: #555; }
 body.dark-mode .content .card{background-color: rgba(28, 31, 58); color: white;box-shadow: none;border-color: rgba(48, 52, 80);}
-body.dark-mode .form-control{background-color:rgba(26, 33, 51);color: white;}
+body.dark-mode .form-group-input{background-color: rgba(28, 31, 58); color: white;}
 body.dark-mode input::placeholder {color: white; opacity: 1;  }
-body.dark-mode .form-select{background-color:rgba(26, 33, 51);color: white;}
 body.dark-mode .btn-mycolor{background-color: rgba(99, 78, 236);color: white;}
 body.dark-mode .btn-danger{background-color: rgba(44, 30, 51);color: red;}
 body.dark-mode  th{background-color: rgba(25, 27, 64)!important;color: white;}
 body.dark-mode .search-box button{background-color: rgba(100, 81, 238);}
 body.dark-mode input::placeholder {color: white; opacity: 1;   }
+body.dark-mode .form-container{background-color: rgba(28, 31, 58); }
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+    background-color: #121824 !important; /* Vẫn giữ đúng màu nền đó */
+    color: #ffffff !important;
+    border-color: #4f46e5 !important;     /* Chỉ đổi viền sang màu xanh tím nhè nhẹ */
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+    outline: none !important;
+}
+.dark-mode input,
+.dark-mode input.form-control,
+.dark-mode select.form-select {
+    border: 1px solid #2b3548 !important; /* Đổi viền trắng/xám sáng thành viền xám tối */
+    box-shadow: none !important;          /* Xóa sạch bóng mờ nếu có */
+}
