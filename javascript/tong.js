@@ -128,5 +128,5 @@ function logout(event) {
 
     setTimeout(() => {
           window.location.href = "aboutus.html";
-    }, 2000);
+    }, 1000);
 }
