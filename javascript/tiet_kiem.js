@@ -89,7 +89,7 @@ function createGoalCardHTML(goal, isCompleted) {
 
   card.innerHTML = `
     <div class="goal-header" style="display: flex; justify-content: space-between; align-items: center;">
-      <h4 style="margin: 0;">🎯 ${goal.goalName} ${isCompleted ? "🏆" : ""}</h4>
+      <h4 style="margin: 0;"> ${goal.goalName} ${isCompleted ? "" : ""}</h4>
       <div style="display: flex; align-items: center; gap: 8px;">
         <span style="font-weight: bold; color: #bb6eff;">${percent}%</span>
         <button onclick="cancelGoal('${goal.goalName}')" style="background: none; border: none; font-size: 16px; cursor: pointer; color: #9ca3af;" title="Xóa mục tiêu">✖</button>
@@ -113,7 +113,7 @@ function createGoalCardHTML(goal, isCompleted) {
 
 window.cancelGoal = function (goalName) {
   alert(
-    `Vì tôi là một người nổi loạn nên tôi sẽ không cho phép em từ bỏ mục tiêu ${goalName}. Hãy tiếp tục cố gắng nhé! 💪🎯`,
+    `Vì tôi là một người nổi loạn nên tôi sẽ không cho phép em từ bỏ mục tiêu ${goalName}. Hãy tiếp tục cố gắng nhé! `,
   );
 };
 
@@ -245,7 +245,7 @@ function renderTransactionHistory() {
     const row = document.createElement("tr");
     row.style.borderBottom = "1px solid #f3f4f6";
     row.innerHTML = `
-      <td style="padding: 10px; font-weight: 500;">🎯 ${goalName}</td>
+      <td style="padding: 10px; font-weight: 500;"> ${goalName}</td>
       <td style="padding: 10px; color: #10b981; font-weight: bold;">+${item.amount.toLocaleString("vi-VN")} đ</td>
       <td style="padding: 10px; color: #6b7280;">${formattedDateTime}</td>
     `;
