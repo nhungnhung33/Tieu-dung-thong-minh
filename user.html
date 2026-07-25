@@ -33,7 +33,7 @@
             </div>
 
 
-            <!-- Cột phải: Form thông tin cá nhân -->
+            
             <div class="card">
                 <form id="profileForm">
                     <div class="form-group">
@@ -79,7 +79,7 @@
     </div>
 
 
-    <!-- Thông báo nhỏ khi lưu thành công -->
+    
     <div class="toast" id="successToast">
         <i class="fa-solid fa-circle-check"></i> Cập nhật thông tin tài khoản thành công!
     </div>
@@ -99,7 +99,7 @@
 
 
         document.getElementById('profileForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Ngăn trang bị reload
+            event.preventDefault();
 
 
             const newName = document.getElementById('fullName').value;
