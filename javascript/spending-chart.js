@@ -1,18 +1,6 @@
-// spending-chart.js
 
 let spendingChartInstance = null;
 
-
-
-/**
-
- * Khởi tạo biểu đồ đường Thu/Chi
-
- * @param {string} canvasId
-
- * @param {Array} transactions - Mảng các giao dịch từ hệ thống
-
- */
 
 function initSpendingChart(canvasId, transactions = []) {
 
@@ -40,7 +28,7 @@ function initSpendingChart(canvasId, transactions = []) {
 
           label: 'Thu nhập',
 
-          data: incomeData, // Tính bằng triệu VND
+          data: incomeData,
 
           borderColor: '#10B981',
 
@@ -60,7 +48,7 @@ function initSpendingChart(canvasId, transactions = []) {
 
           label: 'Chi tiêu',
 
-          data: expenseData, // Tính bằng triệu VND
+          data: expenseData,
 
           borderColor: '#EF4444',
 
@@ -151,13 +139,6 @@ function initSpendingChart(canvasId, transactions = []) {
 }
 
 
-
-/**
-
- * Xử lý tính tổng Thu/Chi theo từng tháng từ danh sách giao dịch
-
- */
-
 function processMonthlyData(transactions) {
 
   const income = Array(12).fill(0);
@@ -170,7 +151,7 @@ function processMonthlyData(transactions) {
 
     if (!t.date || !t.amount) return;
 
-    const month = new Date(t.date).getMonth(); // 0 -> 11
+    const month = new Date(t.date).getMonth(); 
 
     const amountInMillions = parseFloat(t.amount) / 1000000;
 
@@ -194,13 +175,6 @@ function processMonthlyData(transactions) {
 
 }
 
-
-
-/**
-
- * Gọi hàm này khi người dùng thêm/xóa/sửa giao dịch
-
- */
 
 function updateSpendingChart(transactions) {
 
