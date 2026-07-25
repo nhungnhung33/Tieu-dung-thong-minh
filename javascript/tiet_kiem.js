@@ -1,17 +1,15 @@
-// 1. Mảng lưu trữ tất cả các mục tiêu và giao dịch
+
 let goals = JSON.parse(localStorage.getItem("savings_goals")) || [];
 let transactions =
   JSON.parse(localStorage.getItem("savings_transactions")) || [];
 
-// HÀM LƯU DỮ LIỆU VÀO LOCALSTORAGE
+
 function saveDataToStorage() {
   localStorage.setItem("savings_goals", JSON.stringify(goals));
   localStorage.setItem("savings_transactions", JSON.stringify(transactions));
 }
 
-// CÁC HÀM XỬ LÝ GIAO DIỆN & DROPDOWN
 
-// --- HÀM ẨN/HIỆN DROPDOWN USER ---
 window.toggleDropdown = function () {
   const dropdown = document.getElementById("myDropdown");
   if (dropdown) {
@@ -19,7 +17,6 @@ window.toggleDropdown = function () {
   }
 };
 
-// Tự động đóng dropdown nếu người dùng click ra ngoài màn hình
 window.onclick = function (event) {
   if (!event.target.closest(".user-dropdown")) {
     const dropdowns = document.getElementsByClassName("dropdown-menu");
@@ -31,8 +28,6 @@ window.onclick = function (event) {
     }
   }
 };
-
-// --- HÀM RENDER DANH SÁCH MỤC TIÊU (ĐANG THỰC HIỆN & ĐÃ HOÀN THÀNH) ---
 function renderGoalsList() {
   const activeContainer = document.getElementById("goalsList");
   const completedContainer = document.getElementById("completedGoalsList");
@@ -40,11 +35,11 @@ function renderGoalsList() {
   if (activeContainer) activeContainer.innerHTML = "";
   if (completedContainer) completedContainer.innerHTML = "";
 
-  // 1. Lọc danh sách theo status
+  
   const activeGoals = goals.filter((g) => g.status !== "completed");
   const completedGoals = goals.filter((g) => g.status === "completed");
 
-  // 2. Render danh sách đang thực hiện
+  
   if (activeGoals.length === 0 && activeContainer) {
     activeContainer.innerHTML = `<p style="color: #888; font-style: italic;">Chưa có mục tiêu nào đang thực hiện.</p>`;
   } else if (activeContainer) {
@@ -53,7 +48,7 @@ function renderGoalsList() {
     });
   }
 
-  // 3. Render danh sách đã hoàn thành
+
   if (completedGoals.length === 0 && completedContainer) {
     completedContainer.innerHTML = `<p style="color: #888; font-style: italic;">Chưa có mục tiêu nào hoàn thành.</p>`;
   } else if (completedContainer) {
@@ -62,11 +57,10 @@ function renderGoalsList() {
     });
   }
 
-  // Cập nhật lại biểu đồ
+ 
   initChart();
 }
 
-// --- HÀM TẠO THẺ CARD CHO MỤC TIÊU ---
 function createGoalCardHTML(goal, isCompleted) {
   const card = document.createElement("div");
   card.className = "card goal-card";
@@ -86,7 +80,7 @@ function createGoalCardHTML(goal, isCompleted) {
         <i class="fa-solid fa-plus-circle"></i> Nạp tiền
        </button>`;
 
-  // Format lại ngày hiển thị DD/MM/YYYY
+  
   let formattedDate = goal.targetDate;
   if (goal.targetDate && goal.targetDate.includes("-")) {
     const parts = goal.targetDate.split("-");
@@ -116,14 +110,13 @@ function createGoalCardHTML(goal, isCompleted) {
   return card;
 }
 
-// --- HÀM HỦY XÓA MỤC TIÊU ---
+
 window.cancelGoal = function (goalName) {
   alert(
     `Vì tôi là một người nổi loạn nên tôi sẽ không cho phép em từ bỏ mục tiêu ${goalName}. Hãy tiếp tục cố gắng nhé! 💪🎯`,
   );
 };
 
-// --- HÀM CẬP NHẬT 3 THẺ TỔNG QUAN ---
 function updateSummaryCards() {
   let totalSaved = 0;
   let totalTarget = 0;
@@ -147,7 +140,7 @@ function updateSummaryCards() {
     totalMonthlyEl.innerText = totalMonthly.toLocaleString("vi-VN") + " đ";
 }
 
-// --- HÀM KHỞI TẠO BIỂU ĐỒ ---
+
 let savingsChart = null;
 function initChart() {
   const canvas = document.getElementById("savingsChart");
@@ -191,7 +184,7 @@ function initChart() {
   });
 }
 
-// --- HÀM KIỂM TRA VÀ HIỂN THỊ THÔNG BÁO CUỐI THÁNG ---
+
 function checkMonthlyReminder() {
   const today = new Date();
   const currentDay = today.getDate();
@@ -220,7 +213,7 @@ function checkMonthlyReminder() {
   }
 }
 
-// --- HÀM RENDER LỊCH SỬ GIAO DỊCH ---
+
 function renderTransactionHistory() {
   const historyContainer = document.getElementById("transactionHistoryList");
   if (!historyContainer) return;
@@ -237,15 +230,15 @@ function renderTransactionHistory() {
     return;
   }
 
-  // Sắp xếp giao dịch mới nhất lên đầu
+ 
   const sortedTransactions = [...transactions].reverse();
 
   sortedTransactions.forEach((item) => {
-    // Tìm tên mục tiêu tương ứng dựa vào goalId
+   
     const parentGoal = goals.find((g) => g.id === item.goalId);
     const goalName = parentGoal ? parentGoal.goalName : "Mục tiêu đã xóa";
 
-    // Format ngày giờ
+    
     const dateObj = new Date(item.date);
     const formattedDateTime = dateObj.toLocaleString("vi-VN");
 
@@ -260,7 +253,7 @@ function renderTransactionHistory() {
   });
 }
 
-// --- HÀM NẠP TIỀN ---
+
 window.depositMoney = function (id) {
   const goal = goals.find((g) => g.id === id);
   if (!goal) return;
@@ -279,10 +272,10 @@ window.depositMoney = function (id) {
     return;
   }
 
-  // 1. Cộng tiền
+  
   goal.currentSaved += addAmount;
 
-  // 2. Tự động chuyển sang completed nếu đạt hoặc vượt mục tiêu
+ 
   if (goal.currentSaved >= goal.targetAmount) {
     goal.status = "completed";
     alert(
@@ -290,7 +283,7 @@ window.depositMoney = function (id) {
     );
   }
 
-  // 3. Ghi nhận giao dịch
+  
   const today = new Date();
   const month = today.getMonth() + 1;
   const currentMonthKey = `${month < 10 ? "0" + month : month}/${today.getFullYear()}`;
@@ -302,7 +295,7 @@ window.depositMoney = function (id) {
     monthYear: currentMonthKey,
   });
 
-  // 4. Lưu và cập nhật lại giao diện
+  
   saveDataToStorage();
   renderGoalsList();
   updateSummaryCards();
@@ -310,7 +303,7 @@ window.depositMoney = function (id) {
   renderTransactionHistory();
 };
 
-// --- HÀM TÁI SỬ DỤNG MỤC TIÊU ---
+
 window.reuseGoal = function (id) {
   const goal = goals.find((g) => g.id === id);
   if (!goal) return;
@@ -334,7 +327,7 @@ window.reuseGoal = function (id) {
   }
 };
 
-// KHỞI TẠO ỨNG DỤNG VÀ SỰ KIỆN FORM
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const goalForm = document.getElementById("goalForm");
@@ -348,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let calculatedMonthly = 0;
 
-  // --- HÀM TÍNH TOÁN GỢI Ý ĐÓNG GÓP TỰ ĐỘNG ---
+
   function calculateContribution() {
     if (!targetAmountInput || !targetDateInput || !frequencySelect) return;
 
@@ -395,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (frequencySelect)
     frequencySelect.addEventListener("change", calculateContribution);
 
-  // --- LẮNG NGHE SỰ KIỆN TẠO MỤC TIÊU ---
+
   if (goalForm) {
     goalForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -432,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Khởi tạo trạng thái ban đầu khi load trang
+
   saveDataToStorage();
   renderGoalsList();
   updateSummaryCards();
