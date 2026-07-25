@@ -3,7 +3,7 @@ var tongChi = 0;
 var transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Kiểm tra xem trang hiện tại có thẻ Canvas vẽ biểu đồ không
+   
     if (document.getElementById("categoryCanvas") && document.getElementById("spendingCanvas")) {
         initCategoryChart("categoryCanvas", transactions);
         initSpendingChart("spendingCanvas", transactions);
@@ -27,7 +27,7 @@ function addTransaction() {
         return;
     }
 
-    // Tạo giao dịch
+   
     var transaction = {
         date: date,
         content: content,
@@ -36,22 +36,21 @@ function addTransaction() {
         amount: amount
     };
 
-    // Lưu vào mảng
+  
     transactions.push(transaction);
 
-    // Lưu localStorage
     localStorage.setItem("transactions", JSON.stringify(transactions));
 
-    // Hiển thị lại
+  
     displayTransactions();
 
-    // Xóa ô nhập
+   
     document.getElementById("date").value = "";
     document.getElementById("content").value = "";
     document.getElementById("amount").value = "";
 }
 
-// Hiển thị bảng
+
 function displayTransactions() {
 
     var table = document.getElementById("transactionTable");
@@ -102,13 +101,9 @@ function displayTransactions() {
 }
 function clearDataAndReload() {
     if (confirm("Bạn có chắc chắn muốn xóa toàn bộ dữ liệu giao dịch không?")) {
-        // 1. Xóa dữ liệu trong LocalStorage
-        localStorage.removeItem("transactions"); 
         
-        // Hoặc xóa toàn bộ LocalStorage nếu muốn reset sạch hoàn toàn:
-        // localStorage.clear();
-
-        // 2. Tải lại trang
+        localStorage.removeItem("transactions"); 
+       
         location.reload();
     }
 }
