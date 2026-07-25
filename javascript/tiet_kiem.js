@@ -9,9 +9,7 @@ function saveDataToStorage() {
   localStorage.setItem("savings_transactions", JSON.stringify(transactions));
 }
 
-// ==========================================
 // CÁC HÀM XỬ LÝ GIAO DIỆN & DROPDOWN
-// ==========================================
 
 // --- HÀM ẨN/HIỆN DROPDOWN USER ---
 window.toggleDropdown = function () {
@@ -73,7 +71,7 @@ function createGoalCardHTML(goal, isCompleted) {
   const card = document.createElement("div");
   card.className = "card goal-card";
   card.style.cssText =
-    "background: #ffe3f5; padding: 16px; border-radius: 12px; margin-bottom: 12px;";
+    "background: #f1eef0; padding: 16px; border-radius: 12px; margin-bottom: 12px;";
 
   const percent = Math.min(
     100,
@@ -149,7 +147,7 @@ function updateSummaryCards() {
     totalMonthlyEl.innerText = totalMonthly.toLocaleString("vi-VN") + " đ";
 }
 
-// --- HÀM KHỜI TẠO BIỂU ĐỒ ---
+// --- HÀM KHỞI TẠO BIỂU ĐỒ ---
 let savingsChart = null;
 function initChart() {
   const canvas = document.getElementById("savingsChart");
@@ -222,6 +220,46 @@ function checkMonthlyReminder() {
   }
 }
 
+// --- HÀM RENDER LỊCH SỬ GIAO DỊCH ---
+function renderTransactionHistory() {
+  const historyContainer = document.getElementById("transactionHistoryList");
+  if (!historyContainer) return;
+
+  historyContainer.innerHTML = "";
+
+  if (transactions.length === 0) {
+    historyContainer.innerHTML = `
+      <tr>
+        <td colspan="3" style="text-align: center; padding: 15px; color: #888; font-style: italic;">
+          Chưa có giao dịch nạp tiền nào.
+        </td>
+      </tr>`;
+    return;
+  }
+
+  // Sắp xếp giao dịch mới nhất lên đầu
+  const sortedTransactions = [...transactions].reverse();
+
+  sortedTransactions.forEach((item) => {
+    // Tìm tên mục tiêu tương ứng dựa vào goalId
+    const parentGoal = goals.find((g) => g.id === item.goalId);
+    const goalName = parentGoal ? parentGoal.goalName : "Mục tiêu đã xóa";
+
+    // Format ngày giờ
+    const dateObj = new Date(item.date);
+    const formattedDateTime = dateObj.toLocaleString("vi-VN");
+
+    const row = document.createElement("tr");
+    row.style.borderBottom = "1px solid #f3f4f6";
+    row.innerHTML = `
+      <td style="padding: 10px; font-weight: 500;">🎯 ${goalName}</td>
+      <td style="padding: 10px; color: #10b981; font-weight: bold;">+${item.amount.toLocaleString("vi-VN")} đ</td>
+      <td style="padding: 10px; color: #6b7280;">${formattedDateTime}</td>
+    `;
+    historyContainer.appendChild(row);
+  });
+}
+
 // --- HÀM NẠP TIỀN ---
 window.depositMoney = function (id) {
   const goal = goals.find((g) => g.id === id);
@@ -269,6 +307,7 @@ window.depositMoney = function (id) {
   renderGoalsList();
   updateSummaryCards();
   checkMonthlyReminder();
+  renderTransactionHistory();
 };
 
 // --- HÀM TÁI SỬ DỤNG MỤC TIÊU ---
@@ -295,9 +334,7 @@ window.reuseGoal = function (id) {
   }
 };
 
-// ==========================================
 // KHỞI TẠO ỨNG DỤNG VÀ SỰ KIỆN FORM
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
   const goalForm = document.getElementById("goalForm");
@@ -392,45 +429,6 @@ document.addEventListener("DOMContentLoaded", function () {
       goalForm.reset();
       if (calcResult) calcResult.style.display = "none";
       calculatedMonthly = 0;
-    });
-  }
-  // --- HÀM RENDER LỊCH SỬ GIAO DỊCH ---
-  function renderTransactionHistory() {
-    const historyContainer = document.getElementById("transactionHistoryList");
-    if (!historyContainer) return;
-
-    historyContainer.innerHTML = "";
-
-    if (transactions.length === 0) {
-      historyContainer.innerHTML = `
-      <tr>
-        <td colspan="3" style="text-align: center; padding: 15px; color: #888; font-style: italic;">
-          Chưa có giao dịch nạp tiền nào.
-        </td>
-      </tr>`;
-      return;
-    }
-
-    // Sắp xếp giao dịch mới nhất lên đầu
-    const sortedTransactions = [...transactions].reverse();
-
-    sortedTransactions.forEach((item) => {
-      // Tìm tên mục tiêu tương ứng dựa vào goalId
-      const parentGoal = goals.find((g) => g.id === item.goalId);
-      const goalName = parentGoal ? parentGoal.goalName : "Mục tiêu đã xóa";
-
-      // Format ngày giờ
-      const dateObj = new Date(item.date);
-      const formattedDateTime = dateObj.toLocaleString("vi-VN");
-
-      const row = document.createElement("tr");
-      row.style.borderBottom = "1px solid #f3f4f6";
-      row.innerHTML = `
-      <td style="padding: 10px; font-weight: 500;">🎯 ${goalName}</td>
-      <td style="padding: 10px; color: #10b981; font-weight: bold;">+${item.amount.toLocaleString("vi-VN")} đ</td>
-      <td style="padding: 10px; color: #6b7280;">${formattedDateTime}</td>
-    `;
-      historyContainer.appendChild(row);
     });
   }
 

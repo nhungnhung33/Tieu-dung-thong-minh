@@ -89,7 +89,7 @@ body {
 }
 
 .summary-card {
-  background: #ffe3f5;
+  background: #f6f0f4;
   padding: 20px;
   border-radius: 16px;
   display: flex;
@@ -126,7 +126,7 @@ body {
 }
 
 .text-orange .card-icon {
-  background-color: #fecddf;
+  background-color: #f9f7f8;
   color: #f93f86;
 }
 .text-orange .summary-amount {
@@ -161,7 +161,7 @@ body {
 
 /* --- FORM CARD --- */
 .card {
-  background: #ffe3f5;
+  background: #f5f1f3;
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -267,7 +267,7 @@ body {
 }
 
 .goal-card {
-  background: #ffe3f5;
+  background: white;
   padding: 20px;
   border-radius: 16px;
   border: 1px solid #e5e7eb;
